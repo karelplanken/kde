@@ -117,13 +117,11 @@ and update mesa:
 sudo apt update && sudo apt upgrade
 ```
 
-
 ## License
 
 [![CC0 1.0][cc0-shield]][cc0]
 
 This work is dedicated to the public domain under the [Creative Commons CC0 1.0 Universal (Public Domain Dedication)][cc0].
 
-https://licensebuttons.net/l/zero/1.0/80x15.png
 [cc0]: https://creativecommons.org/publicdomain/zero/1.0/
-
+[cc0-shield]: https://licensebuttons.net/p/mark/1.0/88x31.png
