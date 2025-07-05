@@ -27,7 +27,7 @@ When installing Git, particularly if you're not familiar with it, just accept al
 Many settings can be changed later and the default values for the install avoid introducing complexity that could make it harder to wrap your mind around how git works. You can dowload the installer from the official [Git](https://git-scm.com/downloads) download site. Or from within a PowerShell terminal run:
 
 ```powershell
-winget search -e --id Git.Git -e --source winget
+winget search -e --id Git.Git --source winget
 ```
 
 If you get a hit then run:
