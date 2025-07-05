@@ -30,36 +30,34 @@ Please pay close attention to whether a step applies to Windows or Linux. To kee
 
 ### Repo Structure
 
+<!-- TODO: Re-make dir -->
+
 This is the directory structure sorting the files of this repo:
 
 ```text
-│   README.md
-│
-├───git
-│       git_config_ubuntu.md
-│       git_install_config_windows.md
-│
-├───powershell
-│       powershell_configure_windows.md
-│       powershell_install_windows.md
-│
-├───prompt_customization
-│       oh_my_posh_install_ubuntu.md
-│       oh_my_posh_install_windows.md
-│       posh_git_install_windows.md
-│
-├───tools_ubuntu
-│       collection_of_tools.md
-│       uv_install_ubuntu.md
-│
-├───tools_windows
-│       docker_desktop_windows.md
-│       vs_code_install_windows.md
-│       wsl_install_windows.md
-│
-└───windows_terminal
-        color_scheme_windows_terminal.json
-        windows_terminal_install_and_config.md
+├── LICENSE
+├── README.md
+├── git
+│   ├── git_config_ubuntu.md
+│   └── git_install_config_windows.md
+├── powershell
+│   ├── powershell_configure_windows.md
+│   └── powershell_install_windows.md
+├── prompt_customization
+│   ├── oh_my_posh_install_ubuntu.md
+│   ├── oh_my_posh_install_windows.md
+│   └── posh_git_install_windows.md
+├── tools_ubuntu
+│   ├── collection_of_tools.md
+│   └── uv_install_ubuntu.md
+├── tools_windows
+│   ├── docker_desktop_windows.md
+│   ├── vs_code_install_windows.md
+│   ├── winget_check_install_windows.md
+│   └── wsl_install_windows.md
+└── windows_terminal
+    ├── color_scheme_windows_terminal.json
+    └── windows_terminal_install_and_config.md
 ```
 
 In principle, all files are accessible from the list below and from each file there's a link back to the list.
@@ -68,27 +66,28 @@ In principle, all files are accessible from the list below and from each file th
 
 ### Windows 11:
 
-1. <a href="./powershell/powershell_install_windows.md">Install Powershell (cross-platform)</a>
-2. <a href="./git/git_install_config_windows.md">Install and configure Git</a>
-3. <a href="./prompt_customization/oh_my_posh_install_windows.md">Install Oh My Posh</a>
-4. <a href="./prompt_customization/posh_git_install_windows.md">Install posh-git</a>
-5. <a href="./powershell/powershell_configure_windows.md">Configure PowerShell and Windows PowerShell</a>
-6. <a href="./windows_terminal/windows_terminal_install_and_config.md">Install and configure Windows Terminal</a>
-7. <a href="./tools_windows/wsl_install_windows.md">Install WSL Ubuntu</a>
+1. <a href="./tools_windows/winget_check_install_windows.md">Check/Install winget</a>
+2. <a href="./powershell/powershell_install_windows.md">Install Powershell (cross-platform)</a>
+3. <a href="./git/git_install_config_windows.md">Install and configure Git</a>
+4. <a href="./prompt_customization/oh_my_posh_install_windows.md">Install Oh My Posh</a>
+5. <a href="./prompt_customization/posh_git_install_windows.md">Install posh-git</a>
+6. <a href="./powershell/powershell_configure_windows.md">Configure PowerShell and Windows PowerShell</a>
+7. <a href="./windows_terminal/windows_terminal_install_and_config.md">Install and configure Windows Terminal</a>
+8. <a href="./tools_windows/wsl_install_windows.md">Install WSL Ubuntu</a>
 
 ### Ubuntu on WSL2:
-8. <a href="./prompt_customization/oh_my_posh_install_ubuntu.md">Install Oh My Posh</a>
-9. <a href="./git/git_config_ubuntu.md">Configure Git</a>
-10. <a href="./tools_ubuntu/uv_install_ubuntu.md">Install uv</a>
+9. <a href="./prompt_customization/oh_my_posh_install_ubuntu.md">Install Oh My Posh</a>
+10. <a href="./git/git_config_ubuntu.md">Configure Git</a>
+11. <a href="./tools_ubuntu/uv_install_ubuntu.md">Install uv</a>
 
 ### Optional on Ubuntu on WSL2
 
-- <a href="./tools_ubuntu/collection_of_tools.md">Optional Tools: sqlite3, cmatrix, neofetch, cowsay, fortune, etc.</a>
+12. <a href="./tools_ubuntu/collection_of_tools.md">Optional Tools: sqlite3, cmatrix, neofetch, cowsay, fortune, etc.</a>
 
 ### Windows 11:
 
-11. <a href="./tools_windows/docker_desktop_windows.md">Install Docker Desktop</a>
-12. <a href="./tools_windows/vs_code_install_windows.md">Install VS Code and extensions</a>
+13. <a href="./tools_windows/docker_desktop_windows.md">Install Docker Desktop</a>
+14. <a href="./tools_windows/vs_code_install_windows.md">Install VS Code and extensions</a>
 
 ### Optional on Windows 11
 
