@@ -13,10 +13,18 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
 1. Oh My Posh is easily installed using winget. Open a PowerShell terminal and run:
 
     ```powershell
-    winget install JanDobbeleer.OhMyPosh -s
+    winget search -e --id JanDeDobbeleer.OhMyPosh --source winget
     ```
 
-2. Ensure that oh-my-posh is included in your user's PATH environment variable. Check this with:
+    If you get a hit matching your search then install it using:
+
+    ```powershell
+    winget install -e --id JanDeDobbeleer.OhMyPosh --source winget
+    ```
+
+2. After isntalling restart the PowerShell terminal.
+
+3. Ensure that oh-my-posh is included in your user's PATH environment variable. Check this with:
 
     ```powershell
     'oh-my-posh is ' + (
@@ -42,13 +50,13 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
     $env:Path += ";$HOME\AppData\Local\Programs\oh-my-posh\bin"
     ```
 
-3. Check that Oh My Posh is installed and works:
+4. Check that Oh My Posh is installed and works:
 
     ```powershell
     oh-my-posh --version
     ```
 
-4. Oh My Posh requires a Nerd Font to render icons correctly. If you don’t already have one installed, you can use the built-in font installer instead of downloading and installing a Nerd font manually. In an elevated prompt, the font is installed globally, else the font is installed in the user's directory.
+5. Oh My Posh requires a Nerd Font to render icons correctly. If you don’t already have one installed, you can use the built-in font installer instead of downloading and installing a Nerd font manually. In an elevated terminal, the font is installed globally, else the font is installed in the user's directory.
    
     ```powershell
     oh-my-posh font install
