@@ -54,6 +54,12 @@ Do the above for both PowerShell and Windows PowerShell because Windows PowerShe
 Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope LocalMachine
 ```
 
-Note: RemoteSigned allows local scripts to run freely while requiring downloaded scripts to be signed by a trusted publisher. This balances security with convenience, which is ideal for development setups like this one.
+Note: The RemoteSigned execution policy allows locally created scripts to run freely, while requiring scripts downloaded from the internet to be signed by a trusted publisher. This strikes a balance between security and convenience, making it ideal for development environments like this one.
+
+Setting the execution policy only for the current user aligns with the Principle of Least Privilege and the Security with Usability principle. It ensures that:
+
+- You don't affect other users or system-wide settings.
+- You maintain a secure and personalized configuration.
+
 
 <a href="../README.md">Back to README</a>
