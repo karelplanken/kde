@@ -1,3 +1,11 @@
+![Version](https://img.shields.io/badge/version-1.1.0-brightgreen)
+![GitHub last commit](https://img.shields.io/github/last-commit/karelplanken/kde?color=blue)
+![GitHub repo size](https://img.shields.io/github/repo-size/karelplanken/kde?color=orange)
+![GitHub issues](https://img.shields.io/github/issues/karelplanken/kde?color=yellow)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/karelplanken/kde?color=lightgrey)
+![License](https://img.shields.io/github/license/karelplanken/kde?color=success)
+![Tech Stack](https://img.shields.io/badge/Made%20with-Markdown-blueviolet)
+
 # Karel's Development Environment (KDE)
 
 ## Introduction
@@ -30,8 +38,6 @@ Please pay close attention to whether a step applies to Windows or Linux. To kee
 
 ### Repo Structure
 
-<!-- TODO: Re-make dir -->
-
 This is the directory structure sorting the files of this repo:
 
 ```text
@@ -51,7 +57,7 @@ This is the directory structure sorting the files of this repo:
 │   ├── collection_of_tools.md
 │   └── uv_install_ubuntu.md
 ├── tools_windows
-│   ├── docker_desktop_windows.md
+│   ├── docker_desktop_install_windows.md
 │   ├── vs_code_install_windows.md
 │   ├── winget_check_install_windows.md
 │   └── wsl_install_windows.md
@@ -66,7 +72,7 @@ In principle, all files are accessible from the list below and from each file th
 
 ### Windows 11:
 
-1. <a href="./tools_windows/winget_check_install_windows.md">Check/Install winget</a>
+1. <a href="./tools_windows/winget_check_install_windows.md">Check/Install WinGet</a>
 2. <a href="./powershell/powershell_install_windows.md">Install Powershell (cross-platform)</a>
 3. <a href="./git/git_install_config_windows.md">Install and configure Git</a>
 4. <a href="./prompt_customization/oh_my_posh_install_windows.md">Install Oh My Posh</a>
@@ -115,6 +121,11 @@ and update mesa:
 ```bash
 sudo apt update && sudo apt upgrade
 ```
+
+## Project Info
+
+- <a href="./CHANGELOG.md">Changelog</a>
+- <a href="#license">License</a>
 
 ## License
 
