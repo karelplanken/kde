@@ -6,9 +6,35 @@
 
 I prefer to work with Git using SSH Key-Pair for authentication, so you'll find how to set that up here. Since these instructions concern configuring Git on Windows I assume you're on Windows using PowerShell. Furthermore I assume that you also want to use the same SSH-key pairs from within WSL2 as you do in Windows (this file is part of my development environment setup, which uses WSL2). For this you'll save the SSH key pair in a OneDrive directory, which obviously is on the Windows side.
 
+Note: Git is a distributed version control system. It allows you to track changes in your code, collaborate with others, and manage different versions of your project, all on your local machine or across multiple systems.
+
+GitHub, on the other hand, is a web-based platform that hosts Git repositories online. It provides collaboration tools, issue tracking, pull requests, and more.
+
+In short:
+
+- Git is the tool.
+- GitHub is a service that works with Git.
+
+You can use Git without GitHub, but you can't use GitHub effectively without Git.
+
 # Install Git on Windows
 
-When installing Git, particularly if you're not familiar with it, just accept all defaults. Many settings can be changed later and the default values for the install avoid introducing complexity that could make it harder to wrap your mind around how git works. You can dowload the installer from the official [Git](https://git-scm.com/downloads) download site.
+When installing Git, particularly if you're not familiar with it, just accept all defaults except:
+
+- Add entry to Windows Terminal
+- Default text editor: choose nano or VS Code
+
+Many settings can be changed later and the default values for the install avoid introducing complexity that could make it harder to wrap your mind around how git works. You can dowload the installer from the official [Git](https://git-scm.com/downloads) download site. Or from within a PowerShell terminal run:
+
+```powershell
+winget search -e --id Git.Git -e --source winget
+```
+
+If you get a hit then run:
+
+```powershell
+winget install -e --id Git.Git -e --source winget
+```
 
 Verify that Git is installed by checking its version:
 
@@ -16,21 +42,9 @@ Verify that Git is installed by checking its version:
 git --version
 ```
 
+If you installed it from within the PowerShell terminal make sure to restart it before you chekc the version of Git.
+
 ## Configure Git on Windows
-
-### Main vs Master
-
-Since GitHub defaults to main instead of master, it is good practice to set the default branch name to main. To check this use:
-
-```powershell
-git config --global init.defaultBranch
-```
-
-If this does not return `main` then set it:
-
-```powershell
-git config --global init.defaultBranch main
-```
 
 ### Name and Email
 
@@ -45,6 +59,22 @@ and your email:
 ```shell
 git config --global user.email "youremail@domain.com"
 ```
+
+### Main vs Master
+
+Since GitHub defaults to main instead of master, it is good practice to set the default branch name for Git to main. To check if this is already the case use:
+
+```powershell
+git config --global init.defaultBranch
+```
+
+If this does not return `main`, or when it doesn't return anything then set it:
+
+```powershell
+git config --global init.defaultBranch main
+```
+
+Verify it with the command given above.
    
 ### Setting up SSH Key Authentication for Git Repos
 
@@ -118,15 +148,15 @@ git config --global user.email "youremail@domain.com"
 	```text
 	Host github_ssh_connection
 	   HostName github.com
-	   IdentityFile ~/OneDrive/Documents/ssh_keys/github
+	   IdentityFile "~/OneDrive/Documents/ssh_keys/github"
 	```
 
-    If your enterprise OneDrive path contains spaces then escape them with '\'.
+    If your enterprise OneDrive path contains spaces, be sure to enclose the path to the public key with double quotes, like so: "path to key".
 
 6. Test the SSH connection to GitHub:
 
     ```shell
-    ssh -T git@github.com
+    ssh -T git@github_ssh_connection
     ```
 
 7. Normally to clone a repo using SSH we do something like:
@@ -140,4 +170,5 @@ git config --global user.email "youremail@domain.com"
     ```powershell
     git clone git@github_ssh_connection:<username>/repo.git
     ```
+
 <a href="../README.md">Back to README</a>
