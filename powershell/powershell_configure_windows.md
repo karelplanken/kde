@@ -115,32 +115,71 @@ Note that since the posh-git module is installed locally for the current user, i
 
 ## Configure Windows PowerShell to Use PowerShell's posh-git Module
 
-1. To use the same posh-git module in Windows PowerShell, create a symbolic link (symlink) in an elevated PowerShell:
-	
+To use the PowerShell posh-git module in Windows PowerShell, we can create a symbolic link (symlink) in the Windows PowerShell directory. because the posh-git module was installed for the current user, it lives in `"$HOME\Documents"`, or in case of a OneDrive setup in the `Documents` directory to which the redirect points. The first steps here are storing the appropriate paths in variables so that the final command is simplified and readable. Open a elevated PowerShell terminal and proceed to the first step.
+
+1.  Get the actual Documents path and store in `$docs`:
+
     ```powershell
-    New-Item -ItemType SymbolicLink `
-            -Path "C:\Program Files\WindowsPowerShell\Modules\posh-git" `
-            -Target "C:\Program Files\PowerShell\Modules\posh-git"
+    $docs = [Environment]::GetFolderPath('MyDocuments')
     ```
 	
-2. Verify the symlink:
+2. Get the path where posh-git is installed to and store in `$source`:
 	
     ```powershell
-    Get-ChildItem "C:\Program Files\WindowsPowerShell\Modules"
+    $source = Split-Path -Parent (Split-Path -Parent (Get-Module -ListAvailable -Name posh-git).Path)
     ```
 
-	and get an output showing something like `posh-git` pointing to the PowerShell module.
+3. Get the directory in which the symbolic link should be placed, i.e. WindowsPowerShell\Modules, and store in `$target`:
 
-3. Add the following to the Windows PowerShell profile script (use `$PROFILE` to get its location):
+    ```powershell
+    $target = Join-Path -Path (Join-Path $docs 'WindowsPowerShell\Modules') -ChildPath 'posh-git'
+    ```
+
+    Make sure that the target exists:
+
+    ```powershell
+    if (-not (Test-Path -Path $target)) {
+        New-Item -ItemType Directory -Path (Split-Path -Parent $target) -Force
+    }
+    ```
+
+4. Create the symbolic link:
+
+    ```powershell
+    New-Item -ItemType SymbolicLink -Path $target -Target $source
+    ```
+
+5. Add the following to the Windows PowerShell profile script (use `$PROFILE` to get its location):
 
     ```powershell
     Add-Content -Path $PROFILE -Value @"
+
     # Enable Git status information and tab completion (symlink to PowerShell module)
     Import-Module posh-git
     "@
     ```
 
-    Close and reopen the Windows PowerShell terminal to apply changes. If Windows PowerShell starts without errors everything should be fine.
+    Close and reopen the Windows PowerShell terminal to apply changes.
+
+6. If Windows PowerShell starts without errors everything should be fine. You can of course check if the posh-git module is now available for Windows PowerShell:
+
+    ```powershell
+    (Get-Module -ListAvailable -Name posh-git).Path
+    ```
+
+## Redirected Documents Shortcut Variable
+
+Because my `Documents` directory is redirected from local to the one in OneDrive, changing to it is quite laborious so I thought I create a variable holding the path to the Documents directory on OneDrive. I did this by adding an entry to my profile script:
+
+    ```powershell
+    Add-Content -Path $PROFILE -Value @'
+
+    # Variable to cd easily into the redirected Documents on OneDrive
+    $docs = [Environment]::GetFolderPath('MyDocuments')
+    '@
+    ```
+
+Of course you can also consider to set the starting directory in Windows Terminal to this folder, or maybe even do both.
 
 ## Final Check
 
