@@ -12,7 +12,13 @@ Windows Terminal is a terminal application for use with command-line tools and s
 
 ## Install Windows Terminal
 
-There are several methods you can install Windows Terminal via the Microsoft Store, from the PowerShell Gallery or using winget:
+Just like with WingGet, you should already have Windows Terminal since that comes with Windows 11. Check if you have Windows Terminal by running:
+
+```powershell
+winget list --id Microsoft.WindowsTerminal
+```
+
+If you get out put listing a Windows Terminal version then you're all set and you can continue to configuring Windows Terminal. If you don't have it then there are several methods you can install Windows Terminal. You can install it via the Microsoft Store, from the PowerShell Gallery or using WinGet:
 
 ```powershell
 winget install -e --id Microsoft.WindowsTerminal
