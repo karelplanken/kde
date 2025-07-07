@@ -41,8 +41,12 @@ Please pay close attention to whether a step applies to Windows or Linux. To kee
 This is the directory structure sorting the files of this repo:
 
 ```text
+├── CHANGELOG.md
 ├── LICENSE
 ├── README.md
+├── additional_info
+│   ├── interactive_matplotlib_plots_ubuntu_wsl.md
+│   └── wsl2_shell_initialization.md
 ├── git
 │   ├── git_config_ubuntu.md
 │   └── git_install_config_windows.md
@@ -108,19 +112,7 @@ By the end of this guide, you'll have:
 - A customized terminal with Oh My Posh and posh-git
 - Docker, VS Code, and a suite of optional tools for productivity and fun
 
-## Potential Issues
 
-If having issues with interactively viewing plots generated with matplotlib (running in Ubuntu and displaying in Windows), then (see: https://github.com/microsoft/wslg/discussions/312 and https://stackoverflow.com/questions/78068008/wsl-matplotlib-artifacts) add mesa repository:
-
-```bash
-sudo add-apt-repository ppa:kisak/kisak-mesa
-```
-
-and update mesa:
-
-```bash
-sudo apt update && sudo apt upgrade
-```
 
 ## Project Info
 
