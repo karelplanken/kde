@@ -6,7 +6,9 @@ To enhance the terminal experience and improve readability, I customize the Bash
 
 ## General Notes and Considerations
 
-This short guide is part of my dev setup for Windows with WSL2 and assumes you have already installed PowerShell, Windows Terminal, and WSL2 with Ubuntu. On my system, Ubuntu is accessed through either Windows Terminal or the integrated terminal in VS Code. Therefore the installation of Oh My Posh in WSL Ubuntu doesn't require a specific Nerd font to be available within Ubuntu.
+This short guide is part of my dev setup for Windows with WSL 2 and assumes you have already installed PowerShell, Windows Terminal, and WSL 2 with Ubuntu. On my system, Ubuntu is accessed through either the Windows Terminal or the integrated terminal in VS Code. Therefore the installation of Oh My Posh in WSL Ubuntu doesn't require a specific Nerd font to be available within Ubuntu.
+
+For details on shell initialization and details on `.profile` and `.bashrc` in WSL 2, see <a href="../additional_info/wsl2_shell_initialization.md">WSL 2 Ubuntu Shell Initialization</a>.
 
 ## Verify/Install Unzip
 
@@ -24,7 +26,7 @@ sudo apt install unzip
 
 ## Install Oh My Posh
 
-Note: Except for AArch64/ARM64, Oh My Posh can be installed using Homebrew. However, Oh My Posh installed with Homebrew may cause issues after upgrading, such as the terminal becoming unresponsive and displaying errors about missing previous versions. To avoid these issues, I recommend installing Oh My Posh manually using the shell script.
+Note: Except for AArch64/ARM64, Oh My Posh can be installed using Homebrew. However, Oh My Posh installed with Homebrew may cause issues after upgrading, such as the terminal becoming temporarily unresponsive and displaying errors about missing previous versions. To avoid these issues, I recommend installing Oh My Posh manually using the shell script.
 
 1. Install Oh My Posh:
 
@@ -32,55 +34,62 @@ Note: Except for AArch64/ARM64, Oh My Posh can be installed using Homebrew. Howe
     curl -s https://ohmyposh.dev/install.sh | bash -s
     ```
     
-2. Add Alias for `oh-my-posh`. I assume here that `oh-my-posh` ended up in `~/.local/bin` and `~/.local/bin` is not in `PATH` if the `bash` shell is started in a terminal. To get things right I add an alias to `.bashrc`:
+2. I assume here that `oh-my-posh` ended up in `~/.local/bin`. You can check this by running:
+
+    ```bash
+    [ -f "$HOME/.local/bin/oh-my-posh" ] && echo "True" || echo "False"
+    ```
+
+    If you get True then all is well and you can proceed. If you get False then Oh My Posh, i.e. the executable oh-my-posh, ended up somewhere else. In the latter case you may want to search for its location and use that path in the next steps.
+
+3. Open `.profile`:
+
+    ```bash
+    sudo nano ~/.profile
+    ```
+
+    then comment out the following lines:
+    
+    ```bash
+    # set PATH so it includes user's private bin if it exists
+    if [ -d "$HOME/.local/bin" ] ; then
+        PATH="$HOME/.local/bin:$PATH"
+    fi
+    ```
+
+    to match:
+    ```bash
+    # set PATH so it includes user's private bin if it exists
+    #if [ -d "$HOME/.local/bin" ] ; then
+    #    PATH="$HOME/.local/bin:$PATH"
+    #fi
+    ```
+    
+    close the `.profile` file (`Ctr`+`O`, `Enter`, and then `Crtl`+`X`)
+
+4. For user installed applications that live in `$HOME/.local/bin` to be available, `$HOME/.local/bin` should be in the `$PATH` environment variable. Therefore add a line in which `$HOME/.local/bin` is added to `$PATH` via an export, run: 
 
 	```bash
-	echo -e "\n# Add alias to access oh-my-posh on launch" >> ~/.bashrc && \
-        echo "alias oh-my-posh='~/.local/bin/oh-my-posh'" >> ~/.bashrc
-	```
-	
-	Now test it:
-
-	```bash
-	exec bash
+    echo -e "\n# Set $PATH so it includes user's private bin if it exists" >> ~/.bashrc && \
+        echo 'if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then' >> ~/.bashrc && \
+        echo '  export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && \
+        echo "fi" >> ~/.bashrc
 	```
 
-    Note: If `~/.local/bin` is not in your `PATH`, you may not be able to run `oh-my-posh` directly. Adding an alias ensures it’s accessible in every shell session.
-
-3. Initialize Oh My Posh with a Theme. To use Oh My Posh with a theme of your choice (e.g., `atomic`), add the following initialization command to your `.bashrc` file for interactive, non-login shells:
+5. Initialize Oh My Posh with a Theme. To use Oh My Posh with a theme of your choice (e.g., `atomic`), add the following initialization command to your `.bashrc` file for interactive, non-login shells:
     
     ```bash
     echo -e "\n# Use Oh My Posh with atomic theme" >> ~/.bashrc && \
     echo 'eval "$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/atomic.omp.json)"' >> ~/.bashrc
     ```
     
-4. Enable Oh My Posh for login shells. Since `.profile` contains:
-
-	```bash
-	# if running bash
-	if [ -n "$BASH_VERSION" ]; then
-	    # include .bashrc if it exists
-	    if [ -f "$HOME/.bashrc" ]; then
-	        . "$HOME/.bashrc"
-	    fi
-	fi
-	```
-
-	Oh My Posh is enabled for login shells. Check if this is the case using:
-
-	```bash
-	less ~/.profile
-	```
-
-	If you don't see these lines then add them.
-	
-5. Reload the shell. Finally, reload your shell for the changes to take effect:
+6. Reload the shell for the changes to take effect:
     
     ```bash
-    exec bash
+    source ~/.bashrc
     ```
 
-6. Check the install using:
+7. Check the install using:
 
     ```bash
     oh-my-posh --version
@@ -90,7 +99,11 @@ That's it! You should now have an appealing Bash prompt with Oh My Posh.
 
 ## Upgrading Oh My Posh
 
-### Manually upgrading Oh My Posh
+Having installed Oh My Posh manually, we don't automatically get upgrade notifications. Therefore, to see if a new version is available run:
+
+```bash
+oh-my-posh notice
+```
 
 Upgrading Oh My Posh manually using the `upgrade` command is simple:
 
@@ -98,57 +111,13 @@ Upgrading Oh My Posh manually using the `upgrade` command is simple:
 oh-my-posh upgrade
 ```
 
-### Automatically Upgrading Oh My Posh
-
-To automatically upgrade Oh My Posh, create a configuration file first:
+To enable automated upgrades, run:
 
 ```bash
-oh-my-posh config export --output ~/.mytheme.omp.json
-```
-       
-Add the following to the configuration file:
-    
-```json
-{
-    "upgrade": {
-    "notice": true,
-    "interval": "24h",
-    "auto": false,
-    "source": "cdn"
-    }
-}
+oh-my-posh enable upgrade
 ```
 
-Set "auto" to true to automatically update. The above configuration will trigger a notice that an update is available. You can adjust the lines shown above manually in `~/.mytheme.omp.json` using `nano`:
-
-```bash
-nano ~/.mytheme.omp.json
-```
-
-Or you can add the contents from within the terminal, for this first install `jq`:
-
-```bash
-sudo apt install jq
-```
-
-then add using:
-
-```bash
-jq '.upgrade = {
-    "notice": true,
-    "interval": "24h",
-    "auto": auto,
-    "source": "cdn"
-}' ~/.mytheme.omp.json > tmp.json && mv tmp.json ~/.mytheme.omp.json
-```
-
-Verify that is has been added using:
-
-```bash
-less ~/.mytheme.omp.json
-```
-
-Inspect the output and press `q` to exit.
+The above command will modify the config file and as new version becomes available Oh My Posh will be upgraded.
 
 ## "Standalone" Linux Distribution
 
