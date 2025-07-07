@@ -10,7 +10,7 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
 
 ## Installing Oh My Posh
 
-1. Oh My Posh is easily installed using winget. Open a PowerShell terminal and run:
+1. Oh My Posh is easily installed using WinGet. Open a PowerShell terminal and run:
 
     ```powershell
     winget search -e --id JanDeDobbeleer.OhMyPosh --source winget
@@ -67,15 +67,15 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
 
 ## Updating Oh My Posh
 
-You can easily update Oh My Posh using winget:
+You can easily update Oh My Posh using WinGet:
 
 ```powershell
 winget upgrade JanDeDobbeleer.OhMyPosh -s winget
 ```
 
 
-## Font Rendering in Windows Terminal and WSL2
+## Font Rendering in Windows Terminal and WSL 2
 
-Nerd Fonts only need to be installed on the Windows host system, not inside WSL2. This is because font rendering is handled by the terminal emulator, e.g., Windows Terminal or VS Code, which runs on Windows.
+Nerd Fonts only need to be installed on the Windows host system, not inside WSL 2. This is because font rendering is handled by the terminal emulator, e.g., Windows Terminal or VS Code, which runs on Windows.
 
 <a href="../README.md">Back to README</a>
