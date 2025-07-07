@@ -10,29 +10,40 @@ The commands in the instructions below can be used in both PowerShell and Window
 
 Both PowerShell and Windows PowerShell have a profile script file named `Microsoft.PowerShell_profile.ps1`. The $PROFILE variable points to the current user's profile script file, which runs every time a new PowerShell session starts.
 
-1. To check if the profile script exists, open up a terminal running PowerShell and execute:
-
-    ```powershell
-    $PROFILE
-    ```
-
-    This should print the path similar to `\Documents\Microsoft.PowerShell_profile.ps1` `. 
-
-2. If it doesn't exist, then create a profile script file using:
-
-    ```powershell
-    New-Item -Path $PROFILE -Type File -Force
-    ```
-
-3. You might also want to do the above steps in one go:
+1. You can create a profile script in one go by running the following in a PowerShell terminal:
 
     ```powershell
     if (!(Test-Path -Path $PROFILE)) {
         New-Item -ItemType File -Path $PROFILE -Force
     }
     ```
+    
+2. To see what the condition does, you can run it separately:
 
-After creating the profile script file you can test its with the command given in the first step.
+    ```powershell
+    Test-Path -Path $PROFILE
+    ```
+
+    If this returns "True" then it exists, if not proceed to step 3.
+
+3. If step 2 returned "True" then proceed skip the command below, if else it returned ""False", create a profile script file using:
+
+    ```powershell
+    New-Item -Path $PROFILE -Type File -Force
+    ```
+
+After creating the profile script file you can test its existence with the command given in the step 2. Do the above also for Windows PowerShell.
+
+Note that PowerShell supports multiple profile script scopes (e.g., all users, all hosts). To inspect them:
+
+```powershell
+$PROFILE | Select-Object *
+```
+
+Setting up the profile script only for the current user aligns with the Principle of Least Privilege and the Security with Usability principle. It ensures that:
+
+- You don't affect other users or system-wide behavior.
+- You maintain a secure and personalized configuration.
 
 ## Configure PowerShell and Windows PowerShell to Use Oh My Posh
 
@@ -45,20 +56,33 @@ notepad $PROFILE
 and add this to the profile script file:
 
 ```powershell
+# Use Oh My Posh with the atomic theme if available
+if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
+    oh-my-posh init pwsh `
+    --config "$env:POSH_THEMES_PATH\atomic.omp.json" `
+    | Invoke-Expression
+}
+```
+
+Since I have multiple machines that share the same OneDrive the loading/initialization and invoking has to be done conditionally. The line added to the profile script file initializes oh-my-posh (init), sets the theme (--config) and applies the configuration (Invoke-Expression). Loading Oh My Posh unconditionally can be achieved using:
+
+```powershell
 # Use Oh My Posh with the atomic theme
 oh-my-posh init pwsh `
   --config "$env:POSH_THEMES_PATH/atomic.omp.json" `
   | Invoke-Expression
 ```
 
-The line added to the profile script file initializes oh-my-posh (init), sets the theme (--config) and applies the configuration (Invoke-Expression). Here I've chosen the atomic theme just because that's my favorite. You can explore other themes by browsing the Oh My Posh themes gallery and updating the `--config` path accordingly.
+Here I've chosen the atomic theme just because that's my favorite. You can explore other themes by browsing the Oh My Posh themes gallery and updating the `--config` path accordingly.
 
 Instead of adding the lines to the profile script file manually you can also add them from within PowerShell:
 
 ```powershell
 Add-Content -Path $PROFILE -Value @"
-# Use Oh My Posh with the atomic theme
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/atomic.omp.json" | Invoke-Expression
+# Use Oh My Posh with the atomic theme if available
+if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
+    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+}
 "@
 ```
 
@@ -81,39 +105,81 @@ Or directly from the command line:
 
 ```powershell
 Add-Content -Path $PROFILE -Value @"
+
 # Enable Git status information and tab completion
 Import-Module posh-git
 "@
 ```
 
+Note that since the posh-git module is installed locally for the current user, i.e. in the directory on Onedrive no conditional loading is required when working with multiple machines using a shared OneDrive.
+
 ## Configure Windows PowerShell to Use PowerShell's posh-git Module
 
-1. To use the same posh-git module in Windows PowerShell, create a symbolic link (symlink) in an elevated PowerShell:
-	
+To use the PowerShell posh-git module in Windows PowerShell, we can create a symbolic link (symlink) in the Windows PowerShell directory. because the posh-git module was installed for the current user, it lives in `"$HOME\Documents"`, or in case of a OneDrive setup in the `Documents` directory to which the redirect points. The first steps here are storing the appropriate paths in variables so that the final command is simplified and readable. Open a elevated PowerShell terminal and proceed to the first step.
+
+1.  Get the actual Documents path and store in `$docs`:
+
     ```powershell
-    New-Item -ItemType SymbolicLink `
-            -Path "C:\Program Files\WindowsPowerShell\Modules\posh-git" `
-            -Target "C:\Program Files\PowerShell\Modules\posh-git"
+    $docs = [Environment]::GetFolderPath('MyDocuments')
     ```
 	
-2. Verify the symlink:
+2. Get the path where posh-git is installed to and store in `$source`:
 	
     ```powershell
-    Get-ChildItem "C:\Program Files\WindowsPowerShell\Modules"
+    $source = Split-Path -Parent (Split-Path -Parent (Get-Module -ListAvailable -Name posh-git).Path)
     ```
 
-	and get an output showing something like `posh-git` pointing to the PowerShell module.
+3. Get the directory in which the symbolic link should be placed, i.e. WindowsPowerShell\Modules, and store in `$target`:
 
-3. Add the following to the Windows PowerShell profile script (use `$PROFILE` to get its location):
+    ```powershell
+    $target = Join-Path -Path (Join-Path $docs 'WindowsPowerShell\Modules') -ChildPath 'posh-git'
+    ```
+
+    Make sure that the target exists:
+
+    ```powershell
+    if (-not (Test-Path -Path $target)) {
+        New-Item -ItemType Directory -Path (Split-Path -Parent $target) -Force
+    }
+    ```
+
+4. Create the symbolic link:
+
+    ```powershell
+    New-Item -ItemType SymbolicLink -Path $target -Target $source
+    ```
+
+5. Add the following to the Windows PowerShell profile script (use `$PROFILE` to get its location):
 
     ```powershell
     Add-Content -Path $PROFILE -Value @"
+
     # Enable Git status information and tab completion (symlink to PowerShell module)
     Import-Module posh-git
     "@
     ```
 
-    Close and reopen the Windows PowerShell terminal to apply changes. If Windows PowerShell starts without errors everything should be fine.
+    Close and reopen the Windows PowerShell terminal to apply changes.
+
+6. If Windows PowerShell starts without errors everything should be fine. You can of course check if the posh-git module is now available for Windows PowerShell:
+
+    ```powershell
+    (Get-Module -ListAvailable -Name posh-git).Path
+    ```
+
+## Redirected Documents Shortcut Variable
+
+Because my `Documents` directory is redirected from local to the one in OneDrive, changing to it is quite laborious so I thought I create a variable holding the path to the Documents directory on OneDrive. I did this by adding an entry to my profile script:
+
+    ```powershell
+    Add-Content -Path $PROFILE -Value @'
+
+    # Variable to cd easily into the redirected Documents on OneDrive
+    $docs = [Environment]::GetFolderPath('MyDocuments')
+    '@
+    ```
+
+Of course you can also consider to set the starting directory in Windows Terminal to this folder, or maybe even do both.
 
 ## Final Check
 

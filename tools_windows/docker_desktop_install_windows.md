@@ -1,12 +1,12 @@
 <a href="../README.md">Back to README</a>
 
-# Docker Desktop on Windows WSL2 Backend (x64)
+# Docker Desktop on Windows WSL 2 Backend (x64)
 
 The install instructions are taken from the [Docker Docs](https://docs.docker.com/desktop/setup/install/windows-install/) and slightly customized.
 
 ## Why Docker Desktop?
 
-This section describes how to install Docker Desktop on Windows 11 using the WSL2 backend. Docker is a core component of this development environment, enabling containerized workflows and consistent dev/test environments. In fact, installing only WSL2 and Docker Desktop would suffice, potentially eliminating the need for Ubuntu and its associated tools and customizations. Since WSL2 is already configured, Docker Desktop will integrate with it to provide a seamless Linux-based container experience on Windows.
+This section describes how to install Docker Desktop on Windows 11 using the WSL 2 backend. Docker is a core component of this development environment, enabling containerized workflows and consistent dev/test environments. In fact, installing only WSL 2 and Docker Desktop would suffice, potentially eliminating the need for Ubuntu and its associated tools and customizations. Since WSL 2 is already configured, Docker Desktop will integrate with it to provide a seamless Linux-based container experience on Windows.
 
 ## Install Interactively
 

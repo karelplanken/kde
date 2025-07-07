@@ -4,19 +4,19 @@
 
 ## General Considerations
 
-This setup is a key part of my development environment. With my development environment I work currently on Windows 11. If you've followed the installation instructions for this environment you'll have PowerShell, Windows Terminal, WSL2 with Ubuntu, Oh My Posh, posh-git, and Docker Desktop installed by now. The instructions below finalize the setup of my development environment by adding [VS Code](https://code.visualstudio.com/) that serves as the primary editor, bridging both Windows and WSL environments.
+This setup is a key part of my development environment. I currently work on Windows 11 in my development environment. If you've followed the installation instructions for this environment you'll have PowerShell, Windows Terminal, WSL 2 with Ubuntu, Oh My Posh, posh-git, and Docker Desktop installed by now. The instructions below finalize the setup of my development environment by adding [VS Code](https://code.visualstudio.com/) that serves as the primary editor, bridging both Windows and WSL environments.
 
 The goal is to have a seamless workflow where I can:
-- Develop locally or inside WSL2 with minimal friction.
+- Develop locally or inside WSL 2 with minimal friction.
 - Use consistent tooling across environments.
 - Leverage modern Python tools like uv and Ruff for performance and simplicity.
 - Integrate Git, Docker, and remote development features directly into my editor.
 
-This guide focuses on installing VS Code, configuring essential extensions, and setting up a modern Python development experience that works well with both Windows and WSL2.
+This guide focuses on installing VS Code, configuring essential extensions, and setting up a modern Python development experience that works well with both Windows and WSL 2.
 
 ## Why VS Code
 
-Visual Studio Code is a lightweight, extensible code editor that integrates well with WSL2, Docker, and modern Python tooling. It supports remote development, has a rich extension ecosystem, and is ideal for working across Windows and Linux environments. In this setup, VS Code serves as the central hub for editing, debugging, and managing both local and remote projects.
+Visual Studio Code is a lightweight, extensible code editor that integrates well with WSL 2, Docker, and modern Python tooling. It supports remote development, has a rich extension ecosystem, and is ideal for working across Windows and Linux environments. In this setup, VS Code serves as the central hub for editing, debugging, and managing both local and remote projects.
 
 ## Install VS Code on Windows
 
@@ -38,13 +38,23 @@ Install Visual Studio Code using the Windows Package Manager (`winget`), which p
 
     The `-e` flag ensures an exact match on the package ID, avoiding ambiguity.
 
-3. Verify Installation. After installation, confirm that VS Code is correctly installed by checking its version:
+3. Restart the terminal running PowerShell.
+
+4. Verify Installation. After installation, confirm that VS Code is correctly installed by checking its version:
 
     ```powershell
     code --version
     ```
 
     This should return the installed version number, indicating that the `code` command is available in your system path.
+
+5. You can now start coding from within a PowerShell terminal by running:
+
+    ```powershell
+    code .
+    ```
+
+    This will open VS Code with the current directory loaded.
 
 ## VS Code Extensions
 
@@ -117,7 +127,7 @@ To enhance productivity and streamline development across both Windows and WSL e
     Useful for embedded development and working with microcontrollers.
 
 2. WSL:Ubuntu (Remote)  
-    These extensions are installed in the WSL2 Ubuntu environment:
+    These extensions are installed in the WSL 2 Ubuntu environment:
 
     - Python (extension pack)  
     Required for debugging, IntelliSense (via Pylance), and Jupyter notebook support.
@@ -154,7 +164,7 @@ However, Ruff does not replace the Python extension or Pylance for:
 Below is a sample `settings.json` configuration for VS Code, tailored for a modern Python development workflow using:
 
 - Ruff (with its language server)
-- uv (for environment management)
+- uv (a fast Python package manager and virtual environment tool that replaces pip and venv)
 - Pylance (for IntelliSense and type checking)
 - Python extension (for debugging and Jupyter support)
 
@@ -196,17 +206,17 @@ Below is a sample `settings.json` configuration for VS Code, tailored for a mode
 ### Notes
 
 - Adjust `"python.defaultInterpreterPath"` if you're using `uv` to manage environments outside of `.venv`.
-- If you're working in WSL2, set the interpreter path to the appropriate location inside your WSL distro.
+- If you're working in WSL 2, set the interpreter path to the appropriate location inside your WSL distro.
 - Ensure that both the Ruff and Python extensions are installed in the appropriate environment (Windows or WSL).
 
 ## Conclusion
 
-With VS Code installed and configured, you now have a powerful and flexible development environment that integrates seamlessly with both Windows and WSL2. By leveraging modern tools like Ruff, uv, and the Remote Development extension pack, you can maintain a clean, efficient workflow across local and remote contexts.
+With VS Code installed and configured, you now have a powerful and flexible development environment that integrates seamlessly with both Windows and WSL 2. By leveraging modern tools like Ruff, uv, and the Remote Development extension pack, you can maintain a clean, efficient workflow across local and remote contexts.
 
 This setup supports:
 - Fast and reliable Python development
 - Integrated Docker and Git workflows
-- Remote editing and debugging in WSL2
+- Remote editing and debugging in WSL 2
 - A consistent experience across environments
 
 As your development needs evolve, VS Code's extensibility allows you to adapt and expand your tooling without disrupting your workflow. This guide provides a solid foundation for building and maintaining a modern, cross-platform development environment.

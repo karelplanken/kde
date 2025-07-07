@@ -8,29 +8,31 @@
 
 ## Installing PowerShell
 
-Since Windows comes with Windows PowerShell, you can install [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows) using winget. 
+Since Windows comes with Windows PowerShell, you can install [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows) using WinGet. 
 
 1. From within a Windows PowerShell or a Command Prompt (cmd) terminal:
 
     ```powershell
-    winget search Microsoft.PowerShell
+    winget search -e --id Microsoft.PowerShell
     ```
 
-    from the list, pick the latest non preview version and copy the ID:
+    from the list, pick the latest non preview version and copy the ID.
 
-2. Install PowerShell using the ID
+2. Install PowerShell using the ID:
 
     ```powershell
-    winget install -id Microsoft.PowerShell --source winget
+    winget install -e --id Microsoft.PowerShell --source winget
     ```
 
-3. Verify the install with:
+3. After restaring the Windows Terminal, verify the install with:
 
     ```powershell
     pwsh --version
     ```
 
-If the installation was successful you can launch PowerShell from the start menu. Once Windows Terminal is installed, I plan to set PowerShell as the default profile.
+    or even better, just start PowerShell and run the same command in there.
+
+If the installation was successful you can launch PowerShell from the start menu. Once Windows Terminal is installed, which probably is already the case since Windows 11 comes with Windows Terminal, I plan to set PowerShell as the default profile. I'l come back to that later.
 
 ## Configuring Execution Policy
 
@@ -46,8 +48,18 @@ To set it:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 	
-Do the above for both PowerShell and Windows PowerShell because Windows PowerShell is still the default shell in some contexts.
+Do the above for both PowerShell and Windows PowerShell because Windows PowerShell is still the default shell in some contexts. In my case, a freshly installed Windows 11 Enterprise edition, in Windows PowerShell the execution policy was set to remote for local machine. If you want to unset the remote signed execution policy, run:
 
-**Note**: RemoteSigned allows local scripts to run freely while requiring downloaded scripts to be signed by a trusted publisher. This balances security with convenience, which is ideal for development setups like this one.
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope LocalMachine
+```
+
+Note: The RemoteSigned execution policy allows locally created scripts to run freely, while requiring scripts downloaded from the internet to be signed by a trusted publisher. This strikes a balance between security and convenience, making it ideal for development environments like this one.
+
+Setting the execution policy only for the current user aligns with the Principle of Least Privilege and the Security with Usability principle. It ensures that:
+
+- You don't affect other users or system-wide settings.
+- You maintain a secure and personalized configuration.
+
 
 <a href="../README.md">Back to README</a>

@@ -1,12 +1,20 @@
+![Version](https://img.shields.io/badge/version-1.1.0-brightgreen)
+![GitHub last commit](https://img.shields.io/github/last-commit/karelplanken/kde?color=blue)
+![GitHub repo size](https://img.shields.io/github/repo-size/karelplanken/kde?color=orange)
+![GitHub issues](https://img.shields.io/github/issues/karelplanken/kde?color=yellow)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/karelplanken/kde?color=lightgrey)
+![License](https://img.shields.io/github/license/karelplanken/kde?color=success)
+![Tech Stack](https://img.shields.io/badge/Made%20with-Markdown-blueviolet)
+
 # Karel's Development Environment (KDE)
 
 ## Introduction
 
-This document outlines the complete setup of my development environment on a Windows 11 machine (x64) using KDE and WSL2. It serves as a step-by-step guide for installing and configuring the tools I use regularly.
+This document outlines the complete setup of my development environment on a Windows 11 machine (x64) using KDE and WSL 2. It serves as a step-by-step guide for installing and configuring the tools I use regularly.
 
 My workflow spans multiple languages, primarily Python, JavaScript, and C/C++—with the latter two focused on embedded development for platforms like Arduino and Raspberry Pi. In addition to the programming languages I also use my setup to write in markdown, HTML, and CSS.
 
-The system runs Windows 11 with Windows Subsystem for Linux 2 (WSL2), using the default Ubuntu distribution (though I still think it should've been called Linux Subsystem for Windows, but I digress...).
+The system runs Windows 11 with Windows Subsystem for Linux 2 (WSL 2), using the default Ubuntu distribution (though I still think it should've been called Linux Subsystem for Windows, but I digress...).
 
 ## Disclaimer
 
@@ -24,19 +32,21 @@ What I report here and what I've learned so far is not by any means work of my o
 
 ## How to Use This Guide
 
-The software components are listed in the order they should be installed. The only prerequisite is a working installation of Windows 11. No prior experience with the tools is assumed. Since WSL2 is installed halfway, the first part takes place on the Windows side.
+The software components are listed in the order they should be installed. The only prerequisite is a working installation of Windows 11. No prior experience with the tools is assumed. Since WSL 2 is installed halfway, the first part takes place on the Windows side.
 
 Please pay close attention to whether a step applies to Windows or Linux. To keep things organized, detailed installation and configuration instructions are provided in separate files. This avoids overwhelming the reader with a long, monolithic list and makes the setup easier to follow.
 
 ### Repo Structure
 
-<!-- TODO: Re-make dir -->
-
 This is the directory structure sorting the files of this repo:
 
 ```text
+├── CHANGELOG.md
 ├── LICENSE
 ├── README.md
+├── additional_info
+│   ├── interactive_matplotlib_plots_ubuntu_wsl.md
+│   └── wsl2_shell_initialization.md
 ├── git
 │   ├── git_config_ubuntu.md
 │   └── git_install_config_windows.md
@@ -51,7 +61,7 @@ This is the directory structure sorting the files of this repo:
 │   ├── collection_of_tools.md
 │   └── uv_install_ubuntu.md
 ├── tools_windows
-│   ├── docker_desktop_windows.md
+│   ├── docker_desktop_install_windows.md
 │   ├── vs_code_install_windows.md
 │   ├── winget_check_install_windows.md
 │   └── wsl_install_windows.md
@@ -66,7 +76,7 @@ In principle, all files are accessible from the list below and from each file th
 
 ### Windows 11:
 
-1. <a href="./tools_windows/winget_check_install_windows.md">Check/Install winget</a>
+1. <a href="./tools_windows/winget_check_install_windows.md">Check/Install WinGet</a>
 2. <a href="./powershell/powershell_install_windows.md">Install Powershell (cross-platform)</a>
 3. <a href="./git/git_install_config_windows.md">Install and configure Git</a>
 4. <a href="./prompt_customization/oh_my_posh_install_windows.md">Install Oh My Posh</a>
@@ -75,12 +85,12 @@ In principle, all files are accessible from the list below and from each file th
 7. <a href="./windows_terminal/windows_terminal_install_and_config.md">Install and configure Windows Terminal</a>
 8. <a href="./tools_windows/wsl_install_windows.md">Install WSL Ubuntu</a>
 
-### Ubuntu on WSL2:
+### Ubuntu on WSL 2:
 9. <a href="./prompt_customization/oh_my_posh_install_ubuntu.md">Install Oh My Posh</a>
 10. <a href="./git/git_config_ubuntu.md">Configure Git</a>
 11. <a href="./tools_ubuntu/uv_install_ubuntu.md">Install uv</a>
 
-### Optional on Ubuntu on WSL2
+### Optional on Ubuntu on WSL 2
 
 12. <a href="./tools_ubuntu/collection_of_tools.md">Optional Tools: sqlite3, cmatrix, neofetch, cowsay, fortune, etc.</a>
 
@@ -97,24 +107,22 @@ In principle, all files are accessible from the list below and from each file th
 ## What You'll Have After Setup
 
 By the end of this guide, you'll have:
-- A fully configured cross-platform dev environment (Windows + WSL2)
+- A fully configured cross-platform dev environment (Windows + WSL 2)
 - Git with SSH authentication across Windows and WSL
 - A customized terminal with Oh My Posh and posh-git
 - Docker, VS Code, and a suite of optional tools for productivity and fun
 
-## Potential Issues
+## Additional Info
 
-If having issues with interactively viewing plots generated with matplotlib (running in Ubuntu and displaying in Windows), then (see: https://github.com/microsoft/wslg/discussions/312 and https://stackoverflow.com/questions/78068008/wsl-matplotlib-artifacts) add mesa repository:
+In the files below you'll find some additional info on certain topics and potential issues with components in this setup that I removed from the instructions to keep the focus on installation and configuration.
 
-```bash
-sudo add-apt-repository ppa:kisak/kisak-mesa
-```
+- <a href="./additional_info/interactive_matplotlib_plots_ubuntu_wsl.md">Viewing Matplotlib Plots Interactively WSL 2 Ubuntu</a>
+- <a href="./additional_info/wsl2_shell_initialization.md">WSL 2 Ubuntu Shell Initialization</a>
 
-and update mesa:
+## Project Info
 
-```bash
-sudo apt update && sudo apt upgrade
-```
+- <a href="./CHANGELOG.md">Changelog</a>
+- <a href="#license">License</a>
 
 ## License
 
