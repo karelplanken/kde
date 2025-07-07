@@ -112,7 +112,12 @@ By the end of this guide, you'll have:
 - A customized terminal with Oh My Posh and posh-git
 - Docker, VS Code, and a suite of optional tools for productivity and fun
 
+## Additional Info
 
+In the files below you'll find some additional info on certain topics and potential issues with components in this setup that I removed from the instructions to keep the focus on installation and configuration.
+
+- <a href="./additional_info/interactive_matplotlib_plots_ubuntu_wsl.md">Viewing Matplotlib Plots Interactively WSL 2 Ubuntu</a>
+- <a href="./additional_info/wsl2_shell_initialization.md">WSL 2 Ubuntu Shell Initialization</a>
 
 ## Project Info
 
