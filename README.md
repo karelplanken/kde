@@ -96,7 +96,7 @@ In principle, all files are accessible from the list below and from each file th
 
 ### Windows 11:
 
-13. <a href="./tools_windows/docker_desktop_windows.md">Install Docker Desktop</a>
+13. <a href="./tools_windows/docker_desktop_install_windows.md">Install Docker Desktop</a>
 14. <a href="./tools_windows/vs_code_install_windows.md">Install VS Code and extensions</a>
 
 ### Optional on Windows 11
