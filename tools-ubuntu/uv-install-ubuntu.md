@@ -18,7 +18,7 @@ Install uv on Ubuntu (in WSL 2) using the standalone installer:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-After uv, you can check that uv is available by running the `uv` command:
+After installing uv, you can check that uv is available by running the `uv` command:
 
 ```bash
 uv
@@ -26,19 +26,28 @@ uv
 
 You should see output similar to: An extremely fast Python package manager.
 
+Since `~/.local/bin` is already manually added to `$PATH`, which is where uv installs itself, we don't want uv 
+to also add `~/.local/bin` and create a duplicate entry. Therefore add following lines to `.bashrc` by running:
+
+```bash
+echo "\n# Prevent uv from modifying shell profiles during updates" >> ~/.bashrc
+echo "export UV_NO_MODIFY_PATH=1" >> ~/.bashrc
+```
+
+
 ## Enable Shell Autocompletion
 
 1. To enable shell autocompletion for uv commands, run the following:
 
     ```bash
-    echo "\n# Shell completion for uv" >> ~/.bashrc
+    echo -e "\n# Shell completion for uv" >> ~/.bashrc
     echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
     ```
 
 2. To enable shell autocompletion for uvx commands, execute:
 
     ```bash
-    echo "\n# Shell completion for uvx" >> ~/.bashrc
+    echo -e "\n# Shell completion for uvx" >> ~/.bashrc
     echo 'eval "$(uvx --generate-shell-completion bash)"' >> ~/.bashrc
     ```
 
@@ -65,6 +74,14 @@ You should see output similar to: An extremely fast Python package manager.
     ```
 
 ## Updating uv
+
+To check if a new uv version is available, compare the output of:
+
+```bash
+curl -s https://api.github.com/repos/astral-sh/uv/releases/latest | grep tag_name
+```
+
+with the current uv version.
 
 When uv is installed via the standalone installer, it can update itself on-demand:
 

@@ -31,7 +31,7 @@ wsl --update
 
 ### Enable Windows Features: VMP and WSL
 
-Make sure that `Virtual Machine Platform` and `Windows Subsystem for Linux` features are turned on. To check this, click the Start button, type "windows features", and select "Turn Windows features on or off". You can also check these via the command line, i.e. in a PowerShell terminal:
+Make sure that `Virtual Machine Platform` and `Windows Subsystem for Linux` features are turned on. To check this, click the Start button, type "Windows features", and select "Turn Windows features on or off". You can also check these via the command line, i.e., in a PowerShell terminal:
 
 1. To check if the features are enabled run in an elevated terminal:
 
@@ -64,7 +64,7 @@ Make sure that `Virtual Machine Platform` and `Windows Subsystem for Linux` feat
     Restart-Computer
     ```
 
-Note: Alternatively use wsl --install directly because this command:
+Note: Alternatively, use `wsl --install` directly because this command:
 
 - Enables both required features
 - Installs the WSL kernel
@@ -96,7 +96,7 @@ or the installed distributions with:
 wsl --list --verbose
 ```
 
-You can also launch Ubuntu by running wsl in PowerShell, from the Start menu, or directly via Windows Terminal. Check for example the WSL version with:
+You can also launch Ubuntu by running `wsl` in PowerShell, from the Start menu, or directly via Windows Terminal.
 
 
 Hint: Frequently do:
@@ -109,13 +109,13 @@ to keep your system updated.
 
 ## WSL Version
 
-As of now, the default version when installing WSL is likely WSL 2. However check that this is the case using the above command `wsl --list --verbose`, this should display Ubuntu and version 2. Strangely enough, the version for WSL can only be set after installing it. To set the default version run in PowerShell:
+As of now, the default version when installing WSL is likely WSL 2. However, check that this is the case using the above command `wsl --list --verbose`; this should display Ubuntu and version 2. Strangely enough, the version for WSL can only be set after installing it. To set the default version, run in PowerShell:
 
 ```powershell
 wsl --set-default-version 2
 ```
 
-This command sets the default WSL version (either 1 or 2) for any new Linux distributions you install after running it. It does not affect already installed distros nor does it install WSL itself, moreover it relies on WSL already being installed and working. The WSL version is set after installing WSL because the command needs the WSL kernel and supporting components to be present. WSL 2 requires a special lightweight VM and a Linux kernel update, which are only available after WSL is installed. So, the logic is:
+This command sets the default WSL version (either 1 or 2) for any new Linux distributions you install after running it. It does not affect already installed distros, nor does it install WSL itself. Moreover, it relies on WSL already being installed and working. The WSL version is set after installing WSL because the command needs the WSL kernel and supporting components to be present. WSL 2 requires a special lightweight VM and a Linux kernel update, which are only available after WSL is installed. So, the logic is:
 
 1. Install WSL (which includes WSL 1 by default).
 2. Set WSL 2 as the default for future distros.
@@ -127,7 +127,7 @@ This command sets the default WSL version (either 1 or 2) for any new Linux dist
 
 ### Step-by-Step: Ensure Ubuntu is Running on WSL 2
 
-1. Check WSL version support by opening a PowerShell as administrator and run:
+1. Check WSL version support by opening PowerShell as Administrator and running:
    
    ```powershell
    wsl --list --verbose
@@ -140,13 +140,13 @@ This command sets the default WSL version (either 1 or 2) for any new Linux dist
    Ubuntu    Running         1
    ```
 
-2. To set WSL 2 as the default version if Ubuntu is running on WSL1 (as shown in the output under step 1), we can set WSL 2 as the default for future installs:
+2. To set WSL 2 as the default version if Ubuntu is running on WSL 1 (as shown in the output under step 1), we can set WSL 2 as the default for future installs:
    
    ```powershell
    wsl --set-default-version 2
    ```
 
-3. Now we can convert the existing Ubuntu WSL1 instance to Ubuntu WSL 2 with:
+3. Now we can convert the existing Ubuntu WSL 1 instance to Ubuntu WSL 2 with:
 
    ```powershell
    wsl --set-version Ubuntu 2
@@ -167,7 +167,7 @@ This command sets the default WSL version (either 1 or 2) for any new Linux dist
 
 ## Optional: Other Distro
 
-If you wish to install a different distro then you can add it using:
+If you wish to install a different distro, then you can add it using:
 
 ```powershell
 wsl --install -d <DistroName>

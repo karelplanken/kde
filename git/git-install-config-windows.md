@@ -24,7 +24,7 @@ When installing Git, particularly if you're not familiar with it, just accept al
 - Add entry to Windows Terminal
 - Default text editor: choose nano or VS Code
 
-Many settings can be changed later and the default values for the install avoid introducing complexity that could make it harder to wrap your mind around how git works. You can dowload the installer from the official [Git](https://git-scm.com/downloads) download site. Or from within a PowerShell terminal run:
+Many settings can be changed later and the default values for the install avoid introducing complexity that could make it harder to wrap your mind around how git works. You can download the installer from the official [Git](https://git-scm.com/downloads) download site. Or from within a PowerShell terminal run:
 
 ```powershell
 winget search -e --id Git.Git --source winget
@@ -42,7 +42,7 @@ Verify that Git is installed by checking its version:
 git --version
 ```
 
-If you installed it from within the PowerShell terminal make sure to restart it before you chekc the version of Git.
+If you installed it from within the PowerShell terminal make sure to restart it before you check the version of Git.
 
 ## Configure Git on Windows
 

@@ -18,7 +18,7 @@ Just like with WingGet, you should already have Windows Terminal since that come
 winget list --id Microsoft.WindowsTerminal
 ```
 
-If you get out put listing a Windows Terminal version then you're all set and you can continue to configuring Windows Terminal. If you don't have it then there are several methods you can install Windows Terminal. You can install it via the Microsoft Store, from the PowerShell Gallery or using WinGet:
+If you get output listing a Windows Terminal version then you're all set and you can continue to configure Windows Terminal. If you don't have it then there are several methods you can install Windows Terminal. You can install it via the Microsoft Store, from the PowerShell Gallery or using WinGet:
 
 ```powershell
 winget install -e --id Microsoft.WindowsTerminal
@@ -42,6 +42,6 @@ Set the cross-platform PowerShell as the default profile:
 
 `WS`→`Settings`→`Startup`→`Default profile`→`PowerShell`
 
-Additionally, I love the Github Dark color scheme, therefore I've put the definition of it in a separate JSON file, <a href="color_scheme_windows_terminal.json">color_scheme_windows_terminal.json</a>, in this repo. You can copy it from there and paste it in your Windows Terminal JSON file at the appropriate location inside the schemes array (somewhere around line 100). You can open the Windows Terminal JSON file from within settings in the lower left corner.
+Additionally, I love the Github Dark color scheme, therefore I've put the definition of it in a separate JSON file, <a href="color-scheme-windows-terminal.json">color-scheme-windows-terminal.json</a>, in this repo. You can copy it from there and paste it in your Windows Terminal JSON file at the appropriate location inside the schemes array (somewhere around line 100). You can open the Windows Terminal JSON file from within settings in the lower left corner.
 
 <a href="../README.md">Back to README</a>

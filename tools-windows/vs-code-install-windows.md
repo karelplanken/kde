@@ -159,55 +159,23 @@ However, Ruff does not replace the Python extension or Pylance for:
 - Type checking
 - Jupyter support
 
-## Sample `settings.json` for Python Development
+## Current (Python) Configuration
 
-Below is a sample `settings.json` configuration for VS Code, tailored for a modern Python development workflow using:
+The (Python) setup in this environment is maintained in dedicated configuration files, instead of an inline sample `settings.json` in this document.
 
-- Ruff (with its language server)
-- uv (a fast Python package manager and virtual environment tool that replaces pip and venv)
-- Pylance (for IntelliSense and type checking)
-- Python extension (for debugging and Jupyter support)
+- Local VS Code user settings (Windows side): <a href="../additional-info/user-settings.md">user-settings.md</a>
+- Remote VS Code machine settings (WSL side): <a href="../additional-info/machine-settings.md">machine-settings.md</a>
+- Ruff configuration: <a href="../additional-info/ruff.toml">ruff.toml</a>
 
-```json
-{
-  // Python interpreter (optional if uv manages it)
-  "python.defaultInterpreterPath": ".venv/bin/python",
+This reflects the current setup best:
 
-  // Use Ruff for linting and formatting
-  "ruff.enable": true,
-  "ruff.organizeImports": true,
-  "ruff.formatOnSave": true,
+- VS Code local and remote settings are separated by context (Windows UI vs WSL machine).
+- Ruff behavior is centrally controlled through `ruff.toml` and referenced from remote settings.
+- Python formatting, linting, and code actions are aligned with the Ruff + Pylance workflow described above.
 
-  // Disable other formatters
-  "python.formatting.provider": "none",
-  "editor.formatOnSave": true,
+If you adopt this setup, update any placeholder paths in the referenced files (for example, the Ruff config path in remote settings) to match your system.
 
-  // Enable Pylance for IntelliSense
-  "python.languageServer": "Pylance",
-
-  // Optional: Enable type checking
-  "python.analysis.typeCheckingMode": "basic",
-
-  // Optional: Exclude virtual environments and build folders
-  "files.exclude": {
-    "**/__pycache__": true,
-    "**/.venv": true,
-    "**/build": true,
-    "**/dist": true
-  },
-
-  // Optional: Ruff-specific settings for Python files
-  "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff"
-  }
-}
-```
-
-### Notes
-
-- Adjust `"python.defaultInterpreterPath"` if you're using `uv` to manage environments outside of `.venv`.
-- If you're working in WSL 2, set the interpreter path to the appropriate location inside your WSL distro.
-- Ensure that both the Ruff and Python extensions are installed in the appropriate environment (Windows or WSL).
+Note: Behavior in VS Code's integrated terminal (prompt rendering, clear-screen behavior, shell integration features) can vary by shell, prompt theme, and extension combination. Keep terminal-related settings in local user settings and adjust them only if you encounter issues in your own setup.
 
 ## Conclusion
 

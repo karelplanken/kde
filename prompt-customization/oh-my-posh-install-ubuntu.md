@@ -8,7 +8,7 @@ To enhance the terminal experience and improve readability, I customize the Bash
 
 This short guide is part of my dev setup for Windows with WSL 2 and assumes you have already installed PowerShell, Windows Terminal, and WSL 2 with Ubuntu. On my system, Ubuntu is accessed through either the Windows Terminal or the integrated terminal in VS Code. Therefore the installation of Oh My Posh in WSL Ubuntu doesn't require a specific Nerd font to be available within Ubuntu.
 
-For details on shell initialization and details on `.profile` and `.bashrc` in WSL 2, see <a href="../additional_info/wsl2_shell_initialization.md">WSL 2 Ubuntu Shell Initialization</a>.
+For details on shell initialization and details on `.profile` and `.bashrc` in WSL 2, see <a href="../additional-info/wsl2-shell-initialization.md">WSL 2 Ubuntu Shell Initialization</a>.
 
 ## Verify/Install Unzip
 
@@ -65,7 +65,7 @@ Note: Except for AArch64/ARM64, Oh My Posh can be installed using Homebrew. Howe
     #fi
     ```
     
-    close the `.profile` file (`Ctr`+`O`, `Enter`, and then `Crtl`+`X`)
+    close the `.profile` file (`Ctrl`+`O`, `Enter`, and then `Ctrl`+`X`)
 
 4. For user installed applications that live in `$HOME/.local/bin` to be available, `$HOME/.local/bin` should be in the `$PATH` environment variable. Therefore add a line in which `$HOME/.local/bin` is added to `$PATH` via an export, run: 
 
