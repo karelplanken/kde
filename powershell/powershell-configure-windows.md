@@ -26,13 +26,13 @@ Both PowerShell and Windows PowerShell have a profile script file named `Microso
 
     If this returns "True" then it exists, if not proceed to step 3.
 
-3. If step 2 returned "True" then proceed skip the command below, if else it returned ""False", create a profile script file using:
+3. If step 2 returned "True", skip the command below. If it returned "False", create a profile script file using:
 
     ```powershell
     New-Item -Path $PROFILE -Type File -Force
     ```
 
-After creating the profile script file you can test its existence with the command given in the step 2. Do the above also for Windows PowerShell.
+After creating the profile script file you can test its existence with the command given in step 2. Do the above also for Windows PowerShell.
 
 Note that PowerShell supports multiple profile script scopes (e.g., all users, all hosts). To inspect them:
 
@@ -46,6 +46,8 @@ Setting up the profile script only for the current user aligns with the Principl
 - You maintain a secure and personalized configuration.
 
 ## Configure PowerShell and Windows PowerShell to Use Oh My Posh
+
+Note: For Oh My Posh installation details, path variability (`user` vs `machine` scope), and verifying the actual install location on your system, see <a href="../prompt-customization/oh-my-posh-install-windows.md">oh-my-posh-install-windows.md</a>.
 
 Open the profile script file from within a terminal:
 
@@ -77,13 +79,26 @@ Here I've chosen the atomic theme just because that's my favorite. You can explo
 
 Instead of adding the lines to the profile script file manually you can also add them from within PowerShell:
 
+Note: Because the command below uses a double-quoted here-string (`@" ... "@`), escape `$env:POSH_THEMES_PATH` so it is written literally to your profile and evaluated when the profile runs.
+
 ```powershell
 Add-Content -Path $PROFILE -Value @"
 # Use Oh My Posh with the atomic theme if available
 if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
-    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+    oh-my-posh init pwsh --config "`$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
 }
 "@
+```
+
+Alternative (no escaping needed): use a single-quoted here-string so variables are not expanded while writing:
+
+```powershell
+Add-Content -Path $PROFILE -Value @'
+# Use Oh My Posh with the atomic theme if available
+if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
+    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+}
+'@
 ```
 
 ## Configure PowerShell to Use posh-git
@@ -94,7 +109,7 @@ Because posh-git was installed from within PowerShell with PowerShellGet (from t
 notepad $PROFILE
 ```
 
-and add this to the ps file:
+and add this to the profile script file:
 	
 ```powershell
 # Enable Git status information and tab completion
@@ -111,11 +126,11 @@ Import-Module posh-git
 "@
 ```
 
-Note that since the posh-git module is installed locally for the current user, i.e. in the directory on Onedrive no conditional loading is required when working with multiple machines using a shared OneDrive.
+Note that since the posh-git module is installed locally for the current user, i.e. in the directory on OneDrive, no conditional loading is required when working with multiple machines using a shared OneDrive.
 
 ## Configure Windows PowerShell to Use PowerShell's posh-git Module
 
-To use the PowerShell posh-git module in Windows PowerShell, we can create a symbolic link (symlink) in the Windows PowerShell directory. because the posh-git module was installed for the current user, it lives in `"$HOME\Documents"`, or in case of a OneDrive setup in the `Documents` directory to which the redirect points. The first steps here are storing the appropriate paths in variables so that the final command is simplified and readable. Open a elevated PowerShell terminal and proceed to the first step.
+To use the PowerShell posh-git module in Windows PowerShell, we can create a symbolic link (symlink) in the Windows PowerShell directory. Because the posh-git module was installed for the current user, it lives in `"$HOME\Documents"`, or in case of a OneDrive setup in the `Documents` directory to which the redirect points. The first steps here are storing the appropriate paths in variables so that the final command is simplified and readable. Open an elevated PowerShell terminal and proceed to the first step.
 
 1.  Get the actual Documents path and store in `$docs`:
 
@@ -169,7 +184,7 @@ To use the PowerShell posh-git module in Windows PowerShell, we can create a sym
 
 ## Redirected Documents Shortcut Variable
 
-Because my `Documents` directory is redirected from local to the one in OneDrive, changing to it is quite laborious so I thought I create a variable holding the path to the Documents directory on OneDrive. I did this by adding an entry to my profile script:
+Because my `Documents` directory is redirected from local to the one in OneDrive, changing to it is quite laborious, so I thought I'd create a variable holding the path to the Documents directory on OneDrive. I did this by adding an entry to my profile script:
 
     ```powershell
     Add-Content -Path $PROFILE -Value @'

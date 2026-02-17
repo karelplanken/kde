@@ -1,0 +1,83 @@
+# Ruff configuration file
+# This setup follows a formatter-driven approach: rely on Ruff's formatter for line length,
+# and ignore E501 (long line warnings) to avoid redundant checks.
+
+# Directories to exclude from linting and formatting (common junk and cache dirs)
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+# Formatter wraps lines at 88 characters (Black-style default)
+line-length = 88
+
+# Indentation width: 4 spaces (PEP 8 compliant)
+indent-width = 4
+
+# Target Python version for parsing and linting
+# Adjust if your project uses a different version
+target-version = "py314"
+
+[lint]
+# Select rule families: type annotations (ANN), pycodestyle errors (E4, E7, E9),
+# flake8 errors (F), and import sorting (I)
+select = ["ANN", "E4", "E7", "E9", "F", "I", "E501"]
+
+ignore = [] # Keep E501 active
+
+# Allow Ruff to auto-fix all fixable issues
+fixable = ["ALL"]
+
+# No rules are marked as unfixable explicitly
+unfixable = []
+
+# Regex for dummy variables (used in linting for unused variables)
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[lint.isort]
+# Sort imports case-sensitively
+case-sensitive = true
+
+[format]
+# Use single quotes for strings
+quote-style = "single"
+
+# Indent with spaces (not tabs)
+indent-style = "space"
+
+# Keep magic trailing commas for better diffs
+skip-magic-trailing-comma = false
+
+# Use system default line endings (auto)
+line-ending = "auto"
+
+# Format code blocks inside docstrings
+docstring-code-format = true
+
+# Allow dynamic wrapping for code inside docstrings
+# (adapts to main line-length setting)
+docstring-code-line-length = "dynamic"

@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.1.0-brightgreen)
+![Version](https://img.shields.io/badge/version-2.0.0-brightgreen)
 ![GitHub last commit](https://img.shields.io/github/last-commit/karelplanken/kde?color=blue)
 ![GitHub repo size](https://img.shields.io/github/repo-size/karelplanken/kde?color=orange)
 ![GitHub issues](https://img.shields.io/github/issues/karelplanken/kde?color=yellow)
@@ -44,30 +44,30 @@ This is the directory structure sorting the files of this repo:
 ├── CHANGELOG.md
 ├── LICENSE
 ├── README.md
-├── additional_info
-│   ├── interactive_matplotlib_plots_ubuntu_wsl.md
-│   └── wsl2_shell_initialization.md
+├── additional-info
+│   ├── interactive-matplotlib-plots-ubuntu-wsl.md
+│   └── wsl2-shell-initialization.md
 ├── git
-│   ├── git_config_ubuntu.md
-│   └── git_install_config_windows.md
+│   ├── git-config-ubuntu.md
+│   └── git-install-config-windows.md
 ├── powershell
-│   ├── powershell_configure_windows.md
-│   └── powershell_install_windows.md
-├── prompt_customization
-│   ├── oh_my_posh_install_ubuntu.md
-│   ├── oh_my_posh_install_windows.md
-│   └── posh_git_install_windows.md
-├── tools_ubuntu
-│   ├── collection_of_tools.md
-│   └── uv_install_ubuntu.md
-├── tools_windows
-│   ├── docker_desktop_install_windows.md
-│   ├── vs_code_install_windows.md
-│   ├── winget_check_install_windows.md
-│   └── wsl_install_windows.md
-└── windows_terminal
-    ├── color_scheme_windows_terminal.json
-    └── windows_terminal_install_and_config.md
+│   ├── powershell-configure-windows.md
+│   └── powershell-install-windows.md
+├── prompt-customization
+│   ├── oh-my-posh-install-ubuntu.md
+│   ├── oh-my-posh-install-windows.md
+│   └── posh-git-install-windows.md
+├── tools-ubuntu
+│   ├── collection-of-tools.md
+│   └── uv-install-ubuntu.md
+├── tools-windows
+│   ├── docker-desktop-install-windows.md
+│   ├── vs-code-install-windows.md
+│   ├── winget-check-install-windows.md
+│   └── wsl-install-windows.md
+└── windows-terminal
+    ├── color-scheme-windows-terminal.json
+    └── windows-terminal-install-and-config.md
 ```
 
 In principle, all files are accessible from the list below and from each file there's a link back to the list.
@@ -76,28 +76,28 @@ In principle, all files are accessible from the list below and from each file th
 
 ### Windows 11:
 
-1. <a href="./tools_windows/winget_check_install_windows.md">Check/Install WinGet</a>
-2. <a href="./powershell/powershell_install_windows.md">Install Powershell (cross-platform)</a>
-3. <a href="./git/git_install_config_windows.md">Install and configure Git</a>
-4. <a href="./prompt_customization/oh_my_posh_install_windows.md">Install Oh My Posh</a>
-5. <a href="./prompt_customization/posh_git_install_windows.md">Install posh-git</a>
-6. <a href="./powershell/powershell_configure_windows.md">Configure PowerShell and Windows PowerShell</a>
-7. <a href="./windows_terminal/windows_terminal_install_and_config.md">Install and configure Windows Terminal</a>
-8. <a href="./tools_windows/wsl_install_windows.md">Install WSL Ubuntu</a>
+1. <a href="./tools-windows/winget-check-install-windows.md">Check/Install WinGet</a>
+2. <a href="./powershell/powershell-install-windows.md">Install PowerShell (cross-platform)</a>
+3. <a href="./git/git-install-config-windows.md">Install and configure Git</a>
+4. <a href="./prompt-customization/oh-my-posh-install-windows.md">Install Oh My Posh</a>
+5. <a href="./prompt-customization/posh-git-install-windows.md">Install posh-git</a>
+6. <a href="./powershell/powershell-configure-windows.md">Configure PowerShell and Windows PowerShell</a>
+7. <a href="./windows-terminal/windows-terminal-install-and-config.md">Install and configure Windows Terminal</a>
+8. <a href="./tools-windows/wsl-install-windows.md">Install WSL Ubuntu</a>
 
 ### Ubuntu on WSL 2:
-9. <a href="./prompt_customization/oh_my_posh_install_ubuntu.md">Install Oh My Posh</a>
-10. <a href="./git/git_config_ubuntu.md">Configure Git</a>
-11. <a href="./tools_ubuntu/uv_install_ubuntu.md">Install uv</a>
+9. <a href="./prompt-customization/oh-my-posh-install-ubuntu.md">Install Oh My Posh</a>
+10. <a href="./git/git-config-ubuntu.md">Configure Git</a>
+11. <a href="./tools-ubuntu/uv-install-ubuntu.md">Install uv</a>
 
 ### Optional on Ubuntu on WSL 2
 
-12. <a href="./tools_ubuntu/collection_of_tools.md">Optional Tools: sqlite3, cmatrix, neofetch, cowsay, fortune, etc.</a>
+12. <a href="./tools-ubuntu/collection-of-tools.md">Optional Tools: sqlite3, cmatrix, neofetch, cowsay, fortune, etc.</a>
 
 ### Windows 11:
 
-13. <a href="./tools_windows/docker_desktop_install_windows.md">Install Docker Desktop</a>
-14. <a href="./tools_windows/vs_code_install_windows.md">Install VS Code and extensions</a>
+13. <a href="./tools-windows/docker-desktop-install-windows.md">Install Docker Desktop</a>
+14. <a href="./tools-windows/vs-code-install-windows.md">Install VS Code and extensions</a>
 
 ### Optional on Windows 11
 
@@ -116,8 +116,8 @@ By the end of this guide, you'll have:
 
 In the files below you'll find some additional info on certain topics and potential issues with components in this setup that I removed from the instructions to keep the focus on installation and configuration.
 
-- <a href="./additional_info/interactive_matplotlib_plots_ubuntu_wsl.md">Viewing Matplotlib Plots Interactively WSL 2 Ubuntu</a>
-- <a href="./additional_info/wsl2_shell_initialization.md">WSL 2 Ubuntu Shell Initialization</a>
+- <a href="./additional-info/interactive-matplotlib-plots-ubuntu-wsl.md">Viewing Matplotlib Plots Interactively WSL 2 Ubuntu</a>
+- <a href="./additional-info/wsl2-shell-initialization.md">WSL 2 Ubuntu Shell Initialization</a>
 
 ## Project Info
 

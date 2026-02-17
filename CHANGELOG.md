@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0] - 2026-02-17
+
+### Changed
+
+- BREAKING: Renamed directories and documentation files from underscore style to hyphen style.
+- Updated internal links and references across the project to match the new paths.
+- Applied typo and wording fixes across key documentation files.
+
 ## [1.1.0] - 2025-07-07
 
 ### Changed
@@ -7,26 +15,26 @@
 - Major revisions of:
 
     - README.md
-    - git_config_ubuntu.md
-    - git_install_config_windows.md
-    - powershell_configure_windows.md
-    - oh_my_posh_install_ubuntu.md
-    - uv_install_ubuntu.md
-    - wsl_install_windows.md
+    - git-config-ubuntu.md
+    - git-install-config-windows.md
+    - powershell-configure-windows.md
+    - oh-my-posh-install-ubuntu.md
+    - uv-install-ubuntu.md
+    - wsl-install-windows.md
 
 - Minor revisions of:
 
-    - powershell_install_windows.md
-    - oh_my_posh_install_windows.md
-    - vs_code_install_windows.md
-    - windows_terminal_install_and_config.md
+    - powershell-install-windows.md
+    - oh-my-posh-install-windows.md
+    - vs-code-install-windows.md
+    - windows-terminal-install-and-config.md
 
 Added:
 
 - CHANGELOG.md
-- interactive_matplotlib_plots_ubuntu_wsl.md
-- wsl2_shell_initialization.md
-- winget_check_install_windows.md
+- interactive-matplotlib-plots-ubuntu-wsl.md
+- wsl2-shell-initialization.md
+- winget-check-install-windows.md
 
 General
 

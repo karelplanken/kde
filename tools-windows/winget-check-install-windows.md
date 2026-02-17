@@ -18,7 +18,7 @@ On Windows 11, the Windows Package Manager (WinGet) is included by default start
 2. You're on a custom Windows image where optional features were removed.
 3. The App Installer is missing or outdated.
 
-To check if WinGet is available we can do a version check. Open a Windows PowerShell terminal by typing in the search bar "Windows Powershell" and press Windows PowerShell. Run the following command in Windows PowerShell to check if WinGet is installed (run means here: type and hit enter):
+To check if WinGet is available we can do a version check. Open a Windows PowerShell terminal by typing in the search bar "Windows PowerShell" and press Windows PowerShell. Run the following command in Windows PowerShell to check if WinGet is installed (run means here: type and hit enter):
 
 ```powershell
 winget --version

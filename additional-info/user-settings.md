@@ -1,0 +1,47 @@
+# VS Code Settings User (Local)
+
+```json
+{
+    // General
+    "security.workspace.trust.untrustedFiles": "newWindow",
+    "extensions.autoUpdate": "onlyEnabledExtensions",
+    "files.autoSave": "afterDelay",
+    "files.dialog.defaultPath": "\\path\\to\\directory",
+    // Workbench
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.iconTheme": "material-icon-theme",
+    // "workbench.settings.editor": "json",
+    // Editor
+    "editor.fontFamily": "Cascadia Code",
+    "editor.fontSize": 16,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    // Debug
+    "debug.toolBarLocation": "docked",
+    // Terminal
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.suggest.enabled": false,
+    "terminal.integrated.tabs.enabled": false,
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    // Remote
+    "remote.autoForwardPorts": false,
+    // GitHub Copilot
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "scminput": false,
+        "yaml": false
+    },
+    "github.copilot.nextEditSuggestions.enabled": true,
+    // AI chat
+    "chat.mcp.gallery.enabled": true,
+    "chat.viewSessions.enabled": false,
+    "claudeCode.preferredLocation": "panel",
+    "autoDocstring.docstringFormat": "google-notypes",
+}
+```

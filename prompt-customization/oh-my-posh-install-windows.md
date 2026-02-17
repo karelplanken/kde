@@ -22,7 +22,7 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
     winget install -e --id JanDeDobbeleer.OhMyPosh --source winget
     ```
 
-2. After isntalling restart the PowerShell terminal.
+2. After installing, restart the PowerShell terminal.
 
 3. Ensure that oh-my-posh is included in your user's PATH environment variable. Check this with:
 
@@ -32,7 +32,7 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
         ) + ' in Path'
     ```
 
-    If oh-my-posh is found proceed to the next step. If it is not found then check the location of the oh-my-posh binary first:
+    If oh-my-posh is found, proceed to the next step. If it is not found, then check the location of the oh-my-posh binary first:
 
     ```powershell
     Get-Command oh-my-posh | Select-Object Source
@@ -44,11 +44,23 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
     $env:Path += ";<path>\oh-my-posh\bin"
     ```
 
-    Replace <path> with the actual directory where Oh My Posh was installed. Usually it ends up in something like: `$HOME\AppData\Local\Programs`. If so then run:
+    Replace <path> with the actual directory where Oh My Posh was installed. On many systems this is in the user scope, e.g. `$HOME\AppData\Local\Programs`. If so then run:
 
     ```powershell
     $env:Path += ";$HOME\AppData\Local\Programs\oh-my-posh\bin"
     ```
+
+    Depending on package version/manifest and install scope, Oh My Posh may also be installed machine-wide (for example under `C:\Program Files (x86)\oh-my-posh\`). Always verify the actual location on your system with:
+
+    ```powershell
+    Get-Command oh-my-posh | Select-Object Source
+    ```
+
+    **Notes on Install Location and Theme Paths**
+
+    - Install location can differ across versions and install scope (`user` vs `machine`).
+    - If you see a path with a double backslash (for example `themes\\atomic.omp.json`), that is usually escaped path notation and not a separate folder level.
+    - For theme selection, avoid hardcoding absolute paths where possible and prefer using `$env:POSH_THEMES_PATH` in your PowerShell profile configuration.
 
 4. Check that Oh My Posh is installed and works:
 
@@ -73,6 +85,11 @@ You can easily update Oh My Posh using WinGet:
 winget upgrade JanDeDobbeleer.OhMyPosh -s winget
 ```
 
+Or maybe even easier:
+
+```powershell
+oh-my-posh upgrade
+```
 
 ## Font Rendering in Windows Terminal and WSL 2
 
