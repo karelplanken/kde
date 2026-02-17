@@ -8,7 +8,7 @@ I use Windows Terminal in my dev setup on Windows with WSL Ubuntu because it all
 
 ## Why Windows Terminal?
 
-Windows Terminal is a terminal application for use with command-line tools and shells like Command Prompt, PowerShell, and WSL, i.e. bash. It allows to work with multiple tabs and supports Unicode and UTF-8 characters. Moreover, it can be customized via themes, styles can be set and configured.
+Windows Terminal is a terminal application for use with command-line tools and shells like Command Prompt, PowerShell, and WSL, i.e., Bash. It allows you to work with multiple tabs and supports Unicode and UTF-8 characters. Moreover, it can be customized via themes; styles can be set and configured.
 
 ## Install Windows Terminal
 
@@ -42,6 +42,6 @@ Set the cross-platform PowerShell as the default profile:
 
 `WS`→`Settings`→`Startup`→`Default profile`→`PowerShell`
 
-Additionally, I love the Github Dark color scheme, therefore I've put the definition of it in a separate JSON file, <a href="color-scheme-windows-terminal.json">color-scheme-windows-terminal.json</a>, in this repo. You can copy it from there and paste it in your Windows Terminal JSON file at the appropriate location inside the schemes array (somewhere around line 100). You can open the Windows Terminal JSON file from within settings in the lower left corner.
+Additionally, I love the GitHub Dark color scheme, therefore I've put the definition of it in a separate JSON file, <a href="color-scheme-windows-terminal.json">color-scheme-windows-terminal.json</a>, in this repo. You can copy it from there and paste it in your Windows Terminal JSON file at the appropriate location inside the schemes array (somewhere around line 100). You can open the Windows Terminal JSON file from within settings in the lower left corner.
 
 <a href="../README.md">Back to README</a>
