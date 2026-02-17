@@ -2,7 +2,7 @@
 
 # Install posh-git on Windows
 
-These instructions assume you're using PowerShell (version 6 or higher) on Windows 11. This ultra short guide covers the installation of [posh-git](https://github.com/dahlbyk/posh-git) on Windows 11. Configuration of PowerShell and Windows PowerShell to use posh-git is covered in <a href="../powershell/powershell-configure-windows.md">powershell-configure-windows.md</a>.
+These instructions assume you're using PowerShell (version 6 or higher) on Windows 11. This ultra-short guide covers the installation of [posh-git](https://github.com/dahlbyk/posh-git) on Windows 11. Configuration of PowerShell and Windows PowerShell to use posh-git is covered in <a href="../powershell/powershell-configure-windows.md">powershell-configure-windows.md</a>.
 
 ## Why posh-git?
 

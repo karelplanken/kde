@@ -24,7 +24,7 @@ To check if WinGet is available we can do a version check. Open a Windows PowerS
 winget --version
 ```
 
-If you get a version number you have WinGet. If you get something like `winget : The term 'winget' is not recognized as...` then you probably don't have winget.
+If you get a version number you have WinGet. If you get something like `winget : The term 'winget' is not recognized as...` then you probably don't have WinGet.
 
 ## Install WinGet
 
