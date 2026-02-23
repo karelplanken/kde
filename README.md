@@ -92,7 +92,7 @@ In principle, all files are accessible from the list below and from each file th
 
 ### Optional on Ubuntu on WSL 2
 
-12. <a href="./tools-ubuntu/collection-of-tools.md">Optional Tools: sqlite3, cmatrix, neofetch, cowsay, fortune, etc.</a>
+12. <a href="./tools-ubuntu/collection-of-tools.md">Optional Tools: SQLite3, Cmatrix, Fastfetch, Cowsay, Fortune, etc.</a>
 
 ### Windows 11:
 
