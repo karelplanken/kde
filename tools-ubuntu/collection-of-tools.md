@@ -36,7 +36,7 @@ To work with SQLite databases directly, we need to install an SQLite interface o
     sudo apt update
     ```
 
-2. Because sqlite3 is frequently pre-installed, check if you already have it on your system:
+2. Because SQLite3 is frequently pre-installed, check if you already have it on your system:
 
     ```bash
     sqlite3 --version
@@ -54,7 +54,7 @@ To work with SQLite databases directly, we need to install an SQLite interface o
     sudo apt install sqlite3
     ```
 
-4. Verify the installation by checking the version of sqlite3: 
+4. Verify the installation by checking the version of SQLite3: 
 
     ```bash
     sqlite3 --version
@@ -64,7 +64,7 @@ To work with SQLite databases directly, we need to install an SQLite interface o
 
 ### What is Fastfetch?
 
-[Fastfetch](https://github.com/fastfetch-cli/fastfetch) is a fast and highly customizable system information tool, similar to Neofetch, but written primarily in C for better performance. It fetches and displays system details—like OS, kernel, uptime, CPU, GPU, memory, and more—in a visually appealing format, often alongside your system logo in ASCII or image form.
+[Fastfetch](https://github.com/fastfetch-cli/fastfetch) is a fast and highly customizable system information tool, similar to its predecessor Neofetch, but written primarily in C for better performance. It fetches and displays system details—like OS, kernel, uptime, CPU, GPU, memory, and more—in a visually appealing format, often alongside your system logo in ASCII or image form.
 
 Fastfetch is designed to be:
 - Lightweight: Minimal dependencies and fast execution.

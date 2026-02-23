@@ -175,9 +175,9 @@ This reflects the current setup best:
 
 If you adopt this setup, update any placeholder paths in the referenced files (for example, the Ruff config path in remote settings) to match your system.
 
-### Python REPL + Oh My Posh in VS Code Terminal
+### Python REPL and Oh My Posh in VS Code Terminal
 
-When using Oh My Posh with a multi-line prompt (for example `atomic`) in VS Code's integrated terminal, pressing `Ctrl+L` in Python REPL sessions can cause redraw issues where the Python prompt (`>>>`) appears behind prompt lines.
+When using Oh My Posh with a multi-line prompt (for example the `atomic` theme) in VS Code's integrated terminal, pressing `Ctrl+L` in Python REPL sessions triggers a redraw causing the Python prompt (`>>>`) to disappear behind prompt lines.
 
 In this setup, the following local setting is intentional and used as a practical workaround:
 
@@ -185,9 +185,7 @@ In this setup, the following local setting is intentional and used as a practica
 "terminal.integrated.shellIntegration.enabled": false
 ```
 
-Disabling shell integration makes the VS Code terminal behave more like a standard terminal emulator for this specific workflow. In my setup, Windows Terminal does not show this redraw issue under the same conditions.
-
-Shell integration can still be useful in other workflows, so treat this as a setup-specific choice rather than a universal recommendation.
+Disabling shell integration makes the VS Code terminal behave more like a standard terminal emulator for this specific workflow. Shell integration can still be useful in other workflows, so treat this as a setup-specific choice rather than a universal recommendation.
 
 Source/discussion: [Suddenly REPL in vscode becomes weird](https://discourse.julialang.org/t/suddenly-repl-in-vscode-becomes-weird/85459/4)
 
