@@ -33,6 +33,16 @@ wsl --update
 
 Make sure that `Virtual Machine Platform` and `Windows Subsystem for Linux` features are turned on. To check this, click the Start button, type "Windows features", and select "Turn Windows features on or off". You can also check these via the command line, i.e., in a PowerShell terminal:
 
+**Note**: Instead of executing below steps, you can directly execute `wsl --install` because this command will:
+
+- Enables both required features
+- Installs the WSL kernel
+- Installs Ubuntu by default (you can choose another distro later)
+
+A restart during the WSL install will then be required, however. If you prefer this route proceed to [Installing WSL](#installing-wsl).
+
+Because I like to know what is happening under the hood and get a better understanding I prefer to:
+
 1. To check if the features are enabled run in an elevated terminal:
 
     ```powershell
@@ -63,14 +73,6 @@ Make sure that `Virtual Machine Platform` and `Windows Subsystem for Linux` feat
     ```powershell
     Restart-Computer
     ```
-
-Note: Alternatively, use `wsl --install` directly because this command:
-
-- Enables both required features
-- Installs the WSL kernel
-- Installs Ubuntu by default (you can choose another distro later)
-
-A restart during the WSL install will then be required, however.
 
 ### Installing WSL
 

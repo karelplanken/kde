@@ -41,13 +41,13 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
     and add it manually:
 
     ```powershell
-    $env:Path += ";<path>\oh-my-posh\bin"
+    $env:Path += ";<path>"
     ```
 
-    Replace <path> with the actual directory where Oh My Posh was installed. On many systems this is in the user scope, e.g. `$HOME\AppData\Local\Programs`. If so then run:
+    Replace <path> with the actual directory where the Oh My Posh executable lives. On many systems this is in the user scope, e.g. `$HOME\AppData\Local\Microsoft\WindowsApps\`. If so then run:
 
     ```powershell
-    $env:Path += ";$HOME\AppData\Local\Programs\oh-my-posh\bin"
+    $env:Path += ";$HOME\AppData\Local\Microsoft\WindowsApps\"
     ```
 
     Depending on package version/manifest and install scope, Oh My Posh may also be installed machine-wide (for example under `C:\Program Files (x86)\oh-my-posh\`). Always verify the actual location on your system with:
@@ -59,8 +59,7 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
     **Notes on Install Location and Theme Paths**
 
     - Install location can differ across versions and install scope (`user` vs `machine`).
-    - If you see a path with a double backslash (for example `themes\\atomic.omp.json`), that is usually escaped path notation and not a separate folder level.
-    - For theme selection, avoid hardcoding absolute paths where possible and prefer using `$env:POSH_THEMES_PATH` in your PowerShell profile configuration.
+    - For theme selection, avoid hardcoding absolute paths in your PowerShell profile configuration.
 
 4. Check that Oh My Posh is installed and works:
 
