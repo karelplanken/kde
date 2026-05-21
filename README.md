@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-2.0.0-brightgreen)
+![Version](https://img.shields.io/badge/version-2.1.0-brightgreen)
 ![GitHub last commit](https://img.shields.io/github/last-commit/karelplanken/kde?color=blue)
 ![GitHub repo size](https://img.shields.io/github/repo-size/karelplanken/kde?color=orange)
 ![GitHub issues](https://img.shields.io/github/issues/karelplanken/kde?color=yellow)
