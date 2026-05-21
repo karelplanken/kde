@@ -61,7 +61,7 @@ and add this to the profile script file:
 # Use Oh My Posh with the atomic theme if available
 if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
     oh-my-posh init pwsh `
-    --config "$env:POSH_THEMES_PATH\atomic.omp.json" `
+    --config "\path-to-a-custom\theme" `
     | Invoke-Expression
 }
 ```
@@ -71,11 +71,11 @@ Since I have multiple machines that share the same OneDrive the loading/initiali
 ```powershell
 # Use Oh My Posh with the atomic theme
 oh-my-posh init pwsh `
-  --config "$env:POSH_THEMES_PATH/atomic.omp.json" `
+  --config "\path-to-a-custom\theme" `
   | Invoke-Expression
 ```
 
-Here I've chosen the atomic theme just because that's my favorite. You can explore other themes by browsing the Oh My Posh themes gallery and updating the `--config` path accordingly.
+There are several ways to load a theme, I prefer to have one locally, i.e. I downloaded the atomic theme. You can explore other themes by browsing the Oh My Posh themes gallery on the official [Oh My Posh website](https://ohmyposh.dev/docs/theme).
 
 Instead of adding the lines to the profile script file manually you can also add them from within PowerShell:
 
