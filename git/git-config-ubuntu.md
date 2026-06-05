@@ -116,12 +116,19 @@ Using the SSH keys saved in Windows (OneDrive) inside WSL Ubuntu:
 2. Then change the mode of the private key (identity file) since SSH on Linux is not that permissive compared to Windows. Do `chmod 600` on the private key since SSH requires private keys to have restricted permissions:
 
     ```bash
-    sudo chmod 600 /mnt/c/Users/<username>/OneDrive/Documents/ssh_keys/github
+    sudo chmod 600 /mnt/c/Users/<username>/OneDrive/Documents/ssh-keys/github
     ```
 
     Make sure to use the correct path to your identity file. Note that the &lt;username&gt; in the path refers to your Windows username.
 
-3. Open the SSH configuration file:
+3. Check that the dir `~/.ssh/` exists. If it doesn't, create it:
+
+    ```bash
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+    ```
+
+4. Open the SSH configuration file:
 
     ```bash
     sudo nano ~/.ssh/config
@@ -130,26 +137,26 @@ Using the SSH keys saved in Windows (OneDrive) inside WSL Ubuntu:
     Add the following to `~/.ssh/config`:
 
     ```text
-    Host github_ssh_connection
+    Host github-ssh-connection
         HostName github.com
         IdentityFile /mnt/c/Users/<username>/OneDrive/Documents/ssh_keys/github
     ```
 
-    Again, make sure to use the correct path to where your identity file lives. Here, `github_ssh_connection` is a custom alias. You can name it anything, but be consistent when using it in git clone commands.
+    Again, make sure to use the correct path to where your identity file lives. Here, `github-ssh-connection` is a custom alias. You can name it anything, but be consistent when using it in git clone commands.
 
-4. Test the SSH connection (GitHub identity) to GitHub:
-
-    ```bash
-    ssh -T git@github_ssh_connection
-    ```
-
-5. Now we can use:
+5. Test the SSH connection (GitHub identity) to GitHub:
 
     ```bash
-    git clone git@github_ssh_connection:<username>/repo.git
+    ssh -T git@github-ssh-connection
     ```
 
-6. To get an overview of the Git configuration use:
+6. Now we can use:
+
+    ```bash
+    git clone git@github-ssh-connection:<username>/repo.git
+    ```
+
+7. To get an overview of the Git configuration use:
 
     ```bash
     git config --list
