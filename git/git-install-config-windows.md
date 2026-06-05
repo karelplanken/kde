@@ -114,20 +114,20 @@ Verify it with the command given above.
 	- `-C`: Comment used to identify the SSH key.
 	- `-f`: Filename to save the SSH key to.
 	
-	Now choose for path something like: `$HOME\OneDrive\Documents\ssh_keys\github` with `$HOME` the environment variable pointing to something like `C:\Users\<username>`. PowerShell has built in support for `~`, which works as a shortcut to the home directory. However, combining this with non native commands you'll want to use `$HOME`.
+	Now choose for path something like: `$HOME\OneDrive\Documents\ssh-keys\github` with `$HOME` the environment variable pointing to something like `C:\Users\<username>`. PowerShell has built in support for `~`, which works as a shortcut to the home directory. However, combining this with non native commands you'll want to use `$HOME`.
 	
     Choose either personal or enterprise OneDrive. If no path is given and only a filename is provided then both files end up in the current working directory. You'll be prompted for a passphrase when running the above command. Just press enter for no password.
 
 4. Copy the output of:
    
 	```shell
-    cat "$HOME\OneDrive\Documents\ssh_keys\github.pub"
+    cat "$HOME\OneDrive\Documents\ssh-keys\github.pub"
 	```
 
 	and paste it in the appropriate field when creating a new SSH key in your GitHub account under `Settings`→`SSH and GPG keys`. Instead of `cat`, which is an alias for `Get-Content` in PowerShell, you can use `Get-Content` directly for clarity. When adding the key to GitHub, it's probably best to use a descriptive title like "Windows Dev Machine" to help identify it later. Note that the key fingerprint will probably be displayed as SHA256. To verify that the local key is the same as the one on GitHub do:
 	
 	```shell
-	ssh-keygen -lf '$HOME\OneDrive\Documents\ssh_keys\github.pub'
+	ssh-keygen -lf '$HOME\OneDrive\Documents\ssh-keys\github.pub'
 	```
 
 	in which:
@@ -148,7 +148,7 @@ Verify it with the command given above.
 	```text
 	Host github-ssh-connection
 	   HostName github.com
-	   IdentityFile "~/OneDrive/Documents/ssh_keys/github"
+	   IdentityFile "~/OneDrive/Documents/ssh-keys/github"
 	```
 
     If your enterprise OneDrive path contains spaces, be sure to enclose the path to the public key with double quotes, like so: "path to key".

@@ -139,7 +139,7 @@ Using the SSH keys saved in Windows (OneDrive) inside WSL Ubuntu:
     ```text
     Host github-ssh-connection
         HostName github.com
-        IdentityFile /mnt/c/Users/<username>/OneDrive/Documents/ssh_keys/github
+        IdentityFile /mnt/c/Users/<username>/OneDrive/Documents/ssh-keys/github
     ```
 
     Again, make sure to use the correct path to where your identity file lives. Here, `github-ssh-connection` is a custom alias. You can name it anything, but be consistent when using it in git clone commands.
@@ -173,7 +173,7 @@ eval "$(ssh-agent -s)"
 This starts the SSH agent and sets environment variables so your shell can communicate with it. Then, add the private key to the SSH agent:
 
 ```bash
-ssh-add /mnt/c/Users/<username>/OneDrive/Documents/ssh_keys/github
+ssh-add /mnt/c/Users/<username>/OneDrive/Documents/ssh-keys/github
 ```
 
 Verify the SSH key is loaded:
