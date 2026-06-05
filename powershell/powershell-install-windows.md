@@ -48,7 +48,7 @@ To set it:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 	
-Do the above for both PowerShell and Windows PowerShell because Windows PowerShell is still the default shell in some contexts. In my case, a freshly installed Windows 11 Enterprise edition, in Windows PowerShell the execution policy was set to Remote for LocalMachine. If you want to unset the RemoteSigned execution policy, run:
+Do the above for both PowerShell and Windows PowerShell because Windows PowerShell is still the default shell in some contexts. In my case, a freshly installed Windows 11 Enterprise edition had the execution policy set to RemoteSigned for LocalMachine. Since I want to follow the Principle of Least Privilege, I reset this to Undefined:
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope LocalMachine

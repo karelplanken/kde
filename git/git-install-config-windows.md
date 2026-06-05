@@ -146,7 +146,7 @@ Verify it with the command given above.
 5. Add the following to `"$HOME\.ssh\config"`:
    
 	```text
-	Host github_ssh_connection
+	Host github-ssh-connection
 	   HostName github.com
 	   IdentityFile "~/OneDrive/Documents/ssh_keys/github"
 	```
@@ -156,7 +156,7 @@ Verify it with the command given above.
 6. Test the SSH connection to GitHub:
 
     ```shell
-    ssh -T git@github_ssh_connection
+    ssh -T git@github-ssh-connection
     ```
 
 7. Normally to clone a repo using SSH we do something like:
@@ -165,10 +165,10 @@ Verify it with the command given above.
     git clone git@github.com:<username>/repo.git
     ```
 
-    Since `"$HOME\.ssh\config"` contains an alias for the host name with the location of the identity file to associate it with the host, we can substitute @github.com: with @github_ssh_connection:
+    Since `"$HOME\.ssh\config"` contains an alias for the host name with the location of the identity file to associate it with the host, we can substitute @github.com: with @github-ssh-connection:
 
     ```powershell
-    git clone git@github_ssh_connection:<username>/repo.git
+    git clone git@github-ssh-connection:<username>/repo.git
     ```
 
 <a href="../README.md">Back to README</a>

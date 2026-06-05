@@ -28,19 +28,19 @@ Verify the installation by running Windows Terminal.
 
 ## Configure Windows Terminal
 
-Launch Windows Terminal and set it as default terminal:
+Launch Windows Terminal (`WT`) and set it as default terminal:
 
-`WS`→`Settings`→`Startup`→`Default terminal application`→`Windows Terminal`
+`WT`→`Settings`→`Startup`→`Default terminal application`→`Windows Terminal`
 
 Set the installed (Hack) Nerd font as default:
 
-`WS`→`Settings`→`Profiles`→`Defaults`→`Appearance`
+`WT`→`Settings`→`Profiles`→`Defaults`→`Appearance`
 
 Set the `Color scheme`, `Font face`, and `Font size` here. I also set a background image here.
 
 Set the cross-platform PowerShell as the default profile:
 
-`WS`→`Settings`→`Startup`→`Default profile`→`PowerShell`
+`WT`→`Settings`→`Startup`→`Default profile`→`PowerShell`
 
 Additionally, I love the GitHub Dark color scheme, therefore I've put the definition of it in a separate JSON file, <a href="color-scheme-windows-terminal.json">color-scheme-windows-terminal.json</a>, in this repo. You can copy it from there and paste it in your Windows Terminal JSON file at the appropriate location inside the schemes array (somewhere around line 100). You can open the Windows Terminal JSON file from within settings in the lower left corner.
 

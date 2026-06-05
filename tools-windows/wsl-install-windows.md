@@ -46,7 +46,8 @@ Because I like to know what is happening under the hood and get a better underst
 1. To check if the features are enabled run in an elevated terminal:
 
     ```powershell
-    Get-WindowsOptionalFeature -Online | Where-Object FeatureName -in @("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux")
+    Get-WindowsOptionalFeature -Online |
+    Where-Object FeatureName -in @("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux")
     ```
 
     This will return the status of both features. Look for the State property in the output:

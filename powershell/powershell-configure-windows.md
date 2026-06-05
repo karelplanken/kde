@@ -32,7 +32,7 @@ Both PowerShell and Windows PowerShell have a profile script file named `Microso
     New-Item -Path $PROFILE -Type File -Force
     ```
 
-After creating the profile script file you can test its existence with the command given in step 2. Do the above also for Windows PowerShell.
+After creating the profile script file you can test its existence with the command given in step 2. Do the above also for Windows PowerShell as PowerShell and Windows PowerShell maintain separate execution policy registries.
 
 Note that PowerShell supports multiple profile script scopes (e.g., all users, all hosts). To inspect them:
 
@@ -75,7 +75,7 @@ oh-my-posh init pwsh `
   | Invoke-Expression
 ```
 
-There are several ways to load a theme, I prefer to have one locally, i.e. I downloaded the atomic theme. You can explore other themes by browsing the Oh My Posh themes gallery on the official [Oh My Posh website](https://ohmyposh.dev/docs/theme).
+There are several ways to load a theme, I prefer to have one locally, i.e. I downloaded the atomic theme. You can explore other themes by browsing the Oh My Posh themes gallery on the official [Oh My Posh website](https://ohmyposh.dev/docs/themes).
 
 Instead of adding the lines to the profile script file manually you can also add them from within PowerShell:
 
@@ -164,7 +164,7 @@ To use the PowerShell posh-git module in Windows PowerShell, we can create a sym
     New-Item -ItemType SymbolicLink -Path $target -Target $source
     ```
 
-5. Add the following to the Windows PowerShell profile script (use `$PROFILE` to get its location):
+5. Open a Windows PowerShell terminal and add the following to the Windows PowerShell profile script (use `$PROFILE` to get its location):
 
     ```powershell
     Add-Content -Path $PROFILE -Value @"
@@ -186,13 +186,13 @@ To use the PowerShell posh-git module in Windows PowerShell, we can create a sym
 
 Because my `Documents` directory is redirected from local to the one in OneDrive, changing to it is quite laborious, so I thought I'd create a variable holding the path to the Documents directory on OneDrive. I did this by adding an entry to my profile script:
 
-    ```powershell
-    Add-Content -Path $PROFILE -Value @'
+```powershell
+Add-Content -Path $PROFILE -Value @'
 
-    # Variable to cd easily into the redirected Documents on OneDrive
-    $docs = [Environment]::GetFolderPath('MyDocuments')
-    '@
-    ```
+# Variable to cd easily into the redirected Documents on OneDrive
+$docs = [Environment]::GetFolderPath('MyDocuments')
+'@
+```
 
 Of course you can also consider to set the starting directory in Windows Terminal to this folder, or maybe even do both.
 
