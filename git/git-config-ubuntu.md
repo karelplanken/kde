@@ -137,23 +137,23 @@ Using the SSH keys saved in Windows (OneDrive) inside WSL Ubuntu:
     Add the following to `~/.ssh/config`:
 
     ```text
-    Host github-ssh-connection
+    Host github
         HostName github.com
         IdentityFile /mnt/c/Users/<username>/OneDrive/Documents/ssh-keys/github
     ```
 
-    Again, make sure to use the correct path to where your identity file lives. Here, `github-ssh-connection` is a custom alias. You can name it anything, but be consistent when using it in git clone commands.
+    Again, make sure to use the correct path to where your identity file lives. Here, `github` is a custom alias. You can name it anything, but be consistent when using it in git clone commands.
 
 5. Test the SSH connection (GitHub identity) to GitHub:
 
     ```bash
-    ssh -T git@github-ssh-connection
+    ssh -T git@github
     ```
 
 6. Now we can use:
 
     ```bash
-    git clone git@github-ssh-connection:<username>/repo.git
+    git clone git@github:<username>/repo.git
     ```
 
 7. To get an overview of the Git configuration use:
