@@ -14,7 +14,9 @@ Both PowerShell and Windows PowerShell have a profile script file named `Microso
 
     ```powershell
     if (!(Test-Path -Path $PROFILE)) {
-        New-Item -ItemType File -Path $PROFILE -Force
+    New-Item -ItemType File -Path $PROFILE -Force
+    } else {
+        Write-Host "$(Split-Path $PROFILE -Leaf) already exists!"
     }
     ```
     

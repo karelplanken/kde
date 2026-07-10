@@ -6,7 +6,7 @@ These instructions assume you're using PowerShell on Windows 11. This guide cove
 
 ## Why Oh My Posh?
 
-To make interacting with the cross-platform PowerShell and Windows PowerShell using the terminal nicer and easier to digest, I like to pimp the prompt with [Oh My Posh](https://ohmyposh.dev/). This will also benefit working with Git. Of course you can find all instructions in the docs.
+To make working in the terminal - both cross-platform PowerShell and Windows PowerShell - nicer and easier to read, I like to pimp the prompt with [Oh My Posh](https://ohmyposh.dev/). This also improves the experience of working with Git. Full documentation is available at the link above.
 
 ## Installing Oh My Posh
 
@@ -22,39 +22,40 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
     winget install -e --id JanDeDobbeleer.OhMyPosh --source winget
     ```
 
-2. After installing, restart the PowerShell terminal.
+2. After installing, you may have to restart the PowerShell terminal.
 
-3. Ensure that oh-my-posh is included in your user's PATH environment variable. Check this with:
-
-    ```powershell
-    'oh-my-posh is ' + (
-        ((Get-ChildItem Env:Path).Value -match 'oh-my-posh') ? 'found' : 'not found'
-        ) + ' in Path'
-    ```
-
-    If oh-my-posh is found, proceed to the next step. If it is not found, then check the location of the oh-my-posh binary first:
+3. Verify that oh-my-posh is resolvable from PowerShell:
 
     ```powershell
-    Get-Command oh-my-posh | Select-Object Source
+    Get-Command oh-my-posh -ErrorAction SilentlyContinue | Select-Object Source
     ```
 
-    and add it manually:
+    If this returns a `Source` path, Oh My Posh is correctly on your PATH - proceed to the next step.
+    In most cases this resolves to the WindowsApps App Execution Alias folder, e.g.
+    `$HOME\AppData\Local\Microsoft\WindowsApps\oh-my-posh.exe`, which is on PATH by default for every
+    user account, so no further action is needed.
+
+    If the command returns nothing, first restart the terminal (a fresh session picks up PATH changes
+    made by the installer). If it's still not found, locate the actual install directory - depending on
+    package version and install scope it may instead live machine-wide, e.g. under
+    `C:\Program Files (x86)\oh-my-posh\`. Check with:
 
     ```powershell
-    $env:Path += ";<path>"
+    Get-ChildItem "$env:LOCALAPPDATA\Programs\oh-my-posh" -Recurse -Filter oh-my-posh.exe -ErrorAction SilentlyContinue
+    Get-ChildItem "C:\Program Files (x86)\oh-my-posh" -Recurse -Filter oh-my-posh.exe -ErrorAction SilentlyContinue
     ```
 
-    Replace <path> with the actual directory where the Oh My Posh executable lives. On many systems this is in the user scope, e.g. `$HOME\AppData\Local\Microsoft\WindowsApps\`. If so then run:
+    Once you've found it, add it to your **user** PATH persistently (not just the current session):
 
     ```powershell
-    $env:Path += ";$HOME\AppData\Local\Microsoft\WindowsApps\"
+    [Environment]::SetEnvironmentVariable(
+        'Path',
+        [Environment]::GetEnvironmentVariable('Path', 'User') + ';<path-to-directory>',
+        'User'
+    )
     ```
 
-    Depending on package version/manifest and install scope, Oh My Posh may also be installed machine-wide (for example under `C:\Program Files (x86)\oh-my-posh\`). Always verify the actual location on your system with:
-
-    ```powershell
-    Get-Command oh-my-posh | Select-Object Source
-    ```
+    Replace `<path-to-directory>` with the actual folder containing `oh-my-posh.exe`. Then open a new terminal and re-run the `Get-Command` check.
 
     **Notes on Install Location and Theme Paths**
 
@@ -67,14 +68,13 @@ To make interacting with the cross-platform PowerShell and Windows PowerShell us
     oh-my-posh --version
     ```
 
-5. Oh My Posh requires a Nerd Font to render icons correctly. If you don’t already have one installed, you can use the built-in font installer instead of downloading and installing a Nerd font manually. In an elevated terminal, the font is installed globally, else the font is installed in the user's directory.
-   
+5. Oh My Posh requires a Nerd Font to render icons correctly. If you don't already have one installed, you can use the built-in font installer instead of downloading and installing a Nerd font manually. In an elevated terminal, the font is installed globally, else the font is installed in the user's directory.
+
     ```powershell
     oh-my-posh font install
     ```
 
     This opens an interactive menu. I recommend selecting [Hack Nerd Font](https://www.nerdfonts.com/font-downloads).
-
 
 ## Updating Oh My Posh
 

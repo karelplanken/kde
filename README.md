@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-2.1.0-brightgreen)
+![Version](https://img.shields.io/badge/version-3.0.0-brightgreen)
 ![GitHub last commit](https://img.shields.io/github/last-commit/karelplanken/kde?color=blue)
 ![GitHub repo size](https://img.shields.io/github/repo-size/karelplanken/kde?color=orange)
 ![GitHub issues](https://img.shields.io/github/issues/karelplanken/kde?color=yellow)
@@ -10,9 +10,9 @@
 
 ## Introduction
 
-This document outlines the complete setup of my development environment on a Windows 11 machine (x64) using KDE and WSL 2. It serves as a step-by-step guide for installing and configuring the tools I use regularly.
+This document outlines the complete setup of my development environment on a laptop running Windows 11 Enterprise (x64) with WSL 2. It serves as a step-by-step guide for installing and configuring the tools I use regularly.
 
-My workflow spans multiple languages, primarily Python, JavaScript, and C/C++—with the latter two focused on embedded development for platforms like Arduino and Raspberry Pi. In addition to the programming languages I also use my setup to write in markdown, HTML, and CSS.
+My primary language is Python, which I use mainly for application development on Linux. My workflow also spans JavaScript, C, and C++. Python (via MicroPython/CircuitPython) and C++ are used for embedded development on platforms like Arduino and RPi Pico, while full Python runs on RPi for general-purpose projects. In addition to these programming languages, I also use my setup to write in Markdown, HTML, and CSS.
 
 The system runs Windows 11 with Windows Subsystem for Linux 2 (WSL 2), using the default Ubuntu distribution (though I still think it should've been called Linux Subsystem for Windows, but I digress...).
 
@@ -45,29 +45,33 @@ This is the directory structure sorting the files of this repo:
 ├── LICENSE
 ├── README.md
 ├── additional-info
-│   ├── interactive-matplotlib-plots-ubuntu-wsl.md
-│   └── wsl2-shell-initialization.md
+│   ├── interactive-matplotlib-plots-ubuntu-wsl.md
+│   ├── machine-settings.jsonc
+│   ├── ruff.toml
+│   ├── user-settings.jsonc
+│   └── wsl2-shell-initialization.md
 ├── git
-│   ├── git-config-ubuntu.md
-│   └── git-install-config-windows.md
+│   ├── git-config-ubuntu.md
+│   └── git-install-config-windows.md
 ├── powershell
-│   ├── powershell-configure-windows.md
-│   └── powershell-install-windows.md
+│   ├── powershell-configure-windows.md
+│   └── powershell-install-windows.md
 ├── prompt-customization
-│   ├── oh-my-posh-install-ubuntu.md
-│   ├── oh-my-posh-install-windows.md
-│   └── posh-git-install-windows.md
+│   ├── oh-my-posh-install-ubuntu.md
+│   ├── oh-my-posh-install-windows.md
+│   └── posh-git-install-windows.md
 ├── tools-ubuntu
-│   ├── collection-of-tools.md
-│   └── uv-install-ubuntu.md
+│   ├── collection-of-tools.md
+│   └── uv-install-ubuntu.md
 ├── tools-windows
-│   ├── docker-desktop-install-windows.md
-│   ├── vs-code-install-windows.md
-│   ├── winget-check-install-windows.md
-│   └── wsl-install-windows.md
+│   ├── docker-desktop-install-windows.md
+│   ├── vs-code-install-windows.md
+│   ├── winget-check-install-windows.md
+│   └── wsl-install-windows.md
 └── windows-terminal
     ├── color-scheme-windows-terminal.json
-    └── windows-terminal-install-and-config.md
+    ├── windows-terminal-check-install.md
+    └── windows-terminal-config.md
 ```
 
 In principle, all files are accessible from the list below and from each file there's a link back to the list.
@@ -77,27 +81,28 @@ In principle, all files are accessible from the list below and from each file th
 ### Windows 11:
 
 1. <a href="./tools-windows/winget-check-install-windows.md">Check/Install WinGet</a>
-2. <a href="./powershell/powershell-install-windows.md">Install PowerShell (cross-platform)</a>
-3. <a href="./git/git-install-config-windows.md">Install and configure Git</a>
-4. <a href="./prompt-customization/oh-my-posh-install-windows.md">Install Oh My Posh</a>
-5. <a href="./prompt-customization/posh-git-install-windows.md">Install posh-git</a>
-6. <a href="./powershell/powershell-configure-windows.md">Configure PowerShell and Windows PowerShell</a>
-7. <a href="./windows-terminal/windows-terminal-install-and-config.md">Install and configure Windows Terminal</a>
-8. <a href="./tools-windows/wsl-install-windows.md">Install WSL Ubuntu</a>
+2. <a href="./windows-terminal/windows-terminal-check-install.md">Check Windows Terminal install</a>
+3. <a href="./powershell/powershell-install-windows.md">Install PowerShell (cross-platform)</a>
+4. <a href="./git/git-install-config-windows.md">Install and configure Git</a>
+5. <a href="./prompt-customization/oh-my-posh-install-windows.md">Install Oh My Posh</a>
+6. <a href="./prompt-customization/posh-git-install-windows.md">Install posh-git</a>
+7. <a href="./powershell/powershell-configure-windows.md">Configure PowerShell and Windows PowerShell</a>
+8. <a href="./windows-terminal/windows-terminal-config.md">Configure Windows Terminal</a>
+9. <a href="./tools-windows/wsl-install-windows.md">Install WSL Ubuntu</a>
 
 ### Ubuntu on WSL 2:
-9. <a href="./prompt-customization/oh-my-posh-install-ubuntu.md">Install Oh My Posh</a>
-10. <a href="./git/git-config-ubuntu.md">Configure Git</a>
-11. <a href="./tools-ubuntu/uv-install-ubuntu.md">Install uv</a>
+10. <a href="./prompt-customization/oh-my-posh-install-ubuntu.md">Install Oh My Posh</a>
+11. <a href="./git/git-config-ubuntu.md">Configure Git</a>
+12. <a href="./tools-ubuntu/uv-install-ubuntu.md">Install uv</a>
 
 ### Optional on Ubuntu on WSL 2
 
-12. <a href="./tools-ubuntu/collection-of-tools.md">Optional Tools: SQLite3, Cmatrix, Fastfetch, Cowsay, Fortune, etc.</a>
+13. <a href="./tools-ubuntu/collection-of-tools.md">Optional Tools: SQLite3, Cmatrix, Fastfetch, Cowsay, Fortune, etc.</a>
 
 ### Windows 11:
 
-13. <a href="./tools-windows/docker-desktop-install-windows.md">Install Docker Desktop</a>
-14. <a href="./tools-windows/vs-code-install-windows.md">Install VS Code and extensions</a>
+14. <a href="./tools-windows/docker-desktop-install-windows.md">Install Docker Desktop</a>
+15. <a href="./tools-windows/vs-code-install-windows.md">Install VS Code and extensions</a>
 
 ### Optional on Windows 11
 

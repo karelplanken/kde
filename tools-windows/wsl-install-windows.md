@@ -39,23 +39,38 @@ Make sure that `Virtual Machine Platform` and `Windows Subsystem for Linux` feat
 - Installs the WSL kernel
 - Installs Ubuntu by default (you can choose another distro later)
 
-A restart during the WSL install will then be required, however. If you prefer this route proceed to [Installing WSL](#installing-wsl).
+A restart during the WSL install will then be required, however. If you prefer this route, proceed to [Installing WSL](#installing-wsl).
 
 Because I like to know what is happening under the hood and get a better understanding I prefer to:
 
 1. To check if the features are enabled run in an elevated terminal:
 
-    ```powershell
-    Get-WindowsOptionalFeature -Online |
-    Where-Object FeatureName -in @("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux")
-    ```
+   ```powershell
+   Get-WindowsOptionalFeature -Online |
+   Where-Object FeatureName -in @("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux")
+   ```
 
-    This will return the status of both features. Look for the State property in the output:
+   **Note**: this command can take a while (up to a minute or more) since it queries the full DISM feature database rather than just the two features you're filtering for. Don't assume it's frozen.
 
-    - Enabled means the feature is active.
-    - Disabled means it's not currently enabled.
+   If you want a faster check, `dism.exe` called directly skips some of PowerShell's overhead:
 
-    If not enabled, proceed to the next steps.
+   ```powershell
+   dism /online /get-featureinfo /featurename:VirtualMachinePlatform
+   dism /online /get-featureinfo /featurename:Microsoft-Windows-Subsystem-Linux
+   ```
+
+   Or, if you only care about WSL2 readiness rather than the feature state itself, `wsl --status` is near-instant and purpose-built for this:
+
+   ```powershell
+   wsl --status
+   ```
+
+   This will return the status of both features. Look for the State property in the output:
+
+   - Enabled means the feature is active.
+   - Disabled means it's not currently enabled.
+
+   If not enabled, proceed to the next steps.
 
 2. Enable the `Virtual Machine Platform` feature. In an elevated prompt run:
 
@@ -93,13 +108,28 @@ Now that WSL is installed, you can access it from within PowerShell to get all k
 wsl --version
 ```
 
-or the installed distributions with:
+The default distribution `Ubuntu` may or may not have been installed, just list the installed distributions with:
 
 ```powershell
 wsl --list --verbose
 ```
 
-You can also launch Ubuntu by running `wsl` in PowerShell, from the Start menu, or directly via Windows Terminal.
+If you get something like:
+
+```text
+Windows Subsystem for Linux has no installed distributions.
+```
+
+ypu can install one following the instruction or just simply install the default:
+
+```powershell
+wsl --install -d Ubuntu
+```
+
+You launch Ubuntu via several ways:
+   - running `wsl` in PowerShell
+   - from the Start menu
+   - directly via Windows Terminal.
 
 
 Hint: Frequently do:

@@ -30,7 +30,7 @@ Since `~/.local/bin` is already manually added to `$PATH`, which is where uv ins
 to also add `~/.local/bin` and create a duplicate entry. Therefore add following lines to `.bashrc` by running:
 
 ```bash
-echo "\n# Prevent uv from modifying shell profiles during updates" >> ~/.bashrc
+echo -e "\n# Prevent uv from modifying shell profiles during updates" >> ~/.bashrc
 echo "export UV_NO_MODIFY_PATH=1" >> ~/.bashrc
 ```
 

@@ -5,17 +5,20 @@
     "files.autoSave": "afterDelay",
     "files.dialog.defaultPath": "\\path\\to\\directory",
     // Workbench
-    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorTheme": "Dark Modern",
     "workbench.editor.enablePreview": false,
     "workbench.editor.tabSizing": "shrink",
+    "workbench.editor.useModal": "off", // "off", "some", "all"
     "workbench.iconTheme": "material-icon-theme",
-    // "workbench.settings.editor": "json",
+    "workbench.settings.editor": "json",
     // Editor
     "editor.fontFamily": "Cascadia Code",
     "editor.fontSize": 16,
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file",
+    // Docstring format
+    "autoDocstring.docstringFormat": "google-notypes",
     // Debug
     "debug.toolBarLocation": "docked",
     // Terminal
@@ -32,13 +35,20 @@
     "github.copilot.enable": {
         "*": true,
         "plaintext": false,
+        "markdown": true,
         "scminput": false,
-        "yaml": false
+        "yaml": false,
+        "jsonc": true,
+        "python": true
     },
     "github.copilot.nextEditSuggestions.enabled": true,
     // AI chat
     "chat.mcp.gallery.enabled": true,
     "chat.viewSessions.enabled": false,
+    "chat.fontSize": 16,
+    "chat.editor.fontSize": 16,
     "claudeCode.preferredLocation": "panel",
-    "autoDocstring.docstringFormat": "google-notypes"
+    "security.allowedUNCHosts": [
+        "wsl.localhost"
+    ]
 }

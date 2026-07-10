@@ -1,5 +1,27 @@
 # Changelog
 
+## [3.0.0] - 2026-07-10
+
+### Changed
+
+- BREAKING: Split the Windows Terminal guide into separate check-install and configuration documents.
+- Updated README.md to the new 3.0.0 release version and current navigation flow.
+- Revised the following documentation files as part of the major refresh:
+
+    - additional-info/user-settings.jsonc
+    - git/git-install-config-windows.md
+    - powershell/powershell-configure-windows.md
+    - powershell/powershell-install-windows.md
+    - prompt-customization/oh-my-posh-install-windows.md
+    - tools-ubuntu/uv-install-ubuntu.md
+    - tools-windows/winget-check-install-windows.md
+    - tools-windows/wsl-install-windows.md
+
+- Replaced windows-terminal/windows-terminal-install-and-config.md with:
+
+    - windows-terminal/windows-terminal-check-install.md
+    - windows-terminal/windows-terminal-config.md
+
 ## [2.0.0] - 2026-02-17
 
 ### Changed
