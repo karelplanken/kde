@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.1.0] - 2026-07-11
+
+### Changed
+
+- Updated Ubuntu setup docs to align with WSL2 login shell behavior:
+
+    - prompt-customization/oh-my-posh-install-ubuntu.md
+    - tools-ubuntu/uv-install-ubuntu.md
+
+- Replaced `.profile` export append instructions with anchor-based, idempotent insertion before the `# if running bash` block to preserve required startup ordering.
+- Kept `.bashrc` interactive setup snippets as append operations, now with idempotency guards for Oh My Posh and uv/uvx completions.
+- Added a new reference document:
+
+    - additional-info/profile-vs-bashrc-wsl2.md
+
+- Updated README navigation to insert the new WSL2 intro section before Ubuntu steps for Oh My Posh, Git, and uv.
+- Bumped project version from 3.0.0 to 3.1.0 in README and changelog.
+
 ## [3.0.0] - 2026-07-10
 
 ### Changed

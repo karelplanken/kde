@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-3.0.0-brightgreen)
+![Version](https://img.shields.io/badge/version-3.1.0-brightgreen)
 ![GitHub last commit](https://img.shields.io/github/last-commit/karelplanken/kde?color=blue)
 ![GitHub repo size](https://img.shields.io/github/repo-size/karelplanken/kde?color=orange)
 ![GitHub issues](https://img.shields.io/github/issues/karelplanken/kde?color=yellow)
@@ -46,6 +46,7 @@ This is the directory structure sorting the files of this repo:
 ├── README.md
 ├── additional-info
 │   ├── interactive-matplotlib-plots-ubuntu-wsl.md
+│   ├── profile-vs-bashrc-wsl2.md
 │   ├── machine-settings.jsonc
 │   ├── ruff.toml
 │   ├── user-settings.jsonc
@@ -91,18 +92,19 @@ In principle, all files are accessible from the list below and from each file th
 9. <a href="./tools-windows/wsl-install-windows.md">Install WSL Ubuntu</a>
 
 ### Ubuntu on WSL 2:
-10. <a href="./prompt-customization/oh-my-posh-install-ubuntu.md">Install Oh My Posh</a>
-11. <a href="./git/git-config-ubuntu.md">Configure Git</a>
-12. <a href="./tools-ubuntu/uv-install-ubuntu.md">Install uv</a>
+10. <a href="./additional-info/profile-vs-bashrc-wsl2.md">.profile vs .bashrc on WSL2</a>
+11. <a href="./prompt-customization/oh-my-posh-install-ubuntu.md">Install Oh My Posh</a>
+12. <a href="./git/git-config-ubuntu.md">Configure Git</a>
+13. <a href="./tools-ubuntu/uv-install-ubuntu.md">Install uv</a>
 
 ### Optional on Ubuntu on WSL 2
 
-13. <a href="./tools-ubuntu/collection-of-tools.md">Optional Tools: SQLite3, Cmatrix, Fastfetch, Cowsay, Fortune, etc.</a>
+14. <a href="./tools-ubuntu/collection-of-tools.md">Optional Tools: SQLite3, Cmatrix, Fastfetch, Cowsay, Fortune, etc.</a>
 
 ### Windows 11:
 
-14. <a href="./tools-windows/docker-desktop-install-windows.md">Install Docker Desktop</a>
-15. <a href="./tools-windows/vs-code-install-windows.md">Install VS Code and extensions</a>
+15. <a href="./tools-windows/docker-desktop-install-windows.md">Install Docker Desktop</a>
+16. <a href="./tools-windows/vs-code-install-windows.md">Install VS Code and extensions</a>
 
 ### Optional on Windows 11
 
@@ -123,6 +125,7 @@ In the files below you'll find some additional info on certain topics and potent
 
 - <a href="./additional-info/interactive-matplotlib-plots-ubuntu-wsl.md">Viewing Matplotlib Plots Interactively WSL 2 Ubuntu</a>
 - <a href="./additional-info/wsl2-shell-initialization.md">WSL 2 Ubuntu Shell Initialization</a>
+- <a href="./additional-info/profile-vs-bashrc-wsl2.md">.profile vs .bashrc on WSL2</a>
 
 ## Project Info
 
