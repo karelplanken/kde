@@ -42,32 +42,7 @@ Note: Except for AArch64/ARM64, Oh My Posh can be installed using Homebrew. Howe
 
     If you get True then all is well and you can proceed. If you get False then Oh My Posh, i.e. the executable oh-my-posh, ended up somewhere else. In the latter case you may want to search for its location and use that path in the next steps.
 
-3. Open `.profile`:
-
-    ```bash
-    sudo nano ~/.profile
-    ```
-
-    then comment out the following lines:
-    
-    ```bash
-    # set PATH so it includes user's private bin if it exists
-    if [ -d "$HOME/.local/bin" ] ; then
-        PATH="$HOME/.local/bin:$PATH"
-    fi
-    ```
-
-    to match:
-    ```bash
-    # set PATH so it includes user's private bin if it exists
-    #if [ -d "$HOME/.local/bin" ] ; then
-    #    PATH="$HOME/.local/bin:$PATH"
-    #fi
-    ```
-    
-    close the `.profile` file (`Ctrl`+`O`, `Enter`, and then `Ctrl`+`X`)
-
-4. For user installed applications that live in `$HOME/.local/bin` to be available, `$HOME/.local/bin` should be in the `$PATH` environment variable. Add this guarded block to `.profile` immediately before `# if running bash`:
+3. For user installed applications that live in `$HOME/.local/bin` to be available, `$HOME/.local/bin` should be in the `$PATH` environment variable. Add this guarded block to `.profile` immediately before `# if running bash`:
 
 	```bash
     PROFILE="$HOME/.profile"
@@ -89,7 +64,7 @@ Note: Except for AArch64/ARM64, Oh My Posh can be installed using Homebrew. Howe
     fi
 	```
 
-5. Initialize Oh My Posh with a theme. To use Oh My Posh with a theme of your choice (e.g., `atomic`), add the following idempotent initialization command to your `.bashrc` file:
+4. Initialize Oh My Posh with a theme. To use Oh My Posh with a theme of your choice (e.g., `atomic`), add the following idempotent initialization command to your `.bashrc` file:
     
     ```bash
     if ! grep -q 'oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/atomic.omp.json' ~/.bashrc; then
@@ -98,13 +73,13 @@ Note: Except for AArch64/ARM64, Oh My Posh can be installed using Homebrew. Howe
     fi
     ```
     
-6. Reload the shell for the changes to take effect:
+5. Reload the shell for the changes to take effect:
     
     ```bash
     source ~/.bashrc
     ```
 
-7. Check the install using:
+6. Check the install using:
 
     ```bash
     oh-my-posh --version
