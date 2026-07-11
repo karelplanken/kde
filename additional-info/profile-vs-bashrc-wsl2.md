@@ -40,6 +40,48 @@ Use this exact order in `.profile`:
 
 `.bashrc` keeps interactive-only setup: prompt initialization, uv/uvx completion evals, nvm loading, aliases.
 
+The default Ubuntu on WSL2 profile typically sources `.bashrc` from a single `# if running bash` block (with no extra outer guard). The example below follows the required order and can be used as a reference template:
+
+```bash
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] && [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
+```
+
+To edit `.profile` manually with Nano:
+
+Open `.profile`:
+
+```bash
+sudo nano ~/.profile
+```
+
+Then edit the content following the instruction line shown at the bottom of the screen. After editing, close the file with `Ctrl`+`O`, `Enter`, and then `Ctrl`+`X`.
+
 ## Adding new exports safely
 
 For any future install step that needs to add PATH/env exports to `.profile`, use this anchor-based, idempotent insertion pattern. Do not use blind `>>` append for `.profile` exports in this repo.
