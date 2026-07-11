@@ -4,7 +4,7 @@
 
 ## General Notes and Considerations
 
-I prefer to work with Git using SSH Key-Pair for authentication, so you'll find how to set that up here. Since these instructions concern configuring Git on Windows I assume you're on Windows using PowerShell. Furthermore I assume that you also want to use the same SSH-key pairs from within WSL 2 as you do in Windows (this file is part of my development environment setup, which uses WSL 2). For this you'll save the SSH key pair in a OneDrive directory, which obviously is on the Windows side.
+I prefer to work with Git using SSH Key-Pair for authentication, so you'll find how to set that up here. Since these instructions concern configuring Git on Windows I assume you're on Windows using PowerShell. Furthermore I assume that you also want to use the same SSH-key pairs from within WSL 2 as you do in Windows. For this you'll save the SSH key pair in a OneDrive directory, which obviously is on the Windows side.
 
 Note: Git is a distributed version control system. It allows you to track changes in your code, collaborate with others, and manage different versions of your project, all on your local machine or across multiple systems.
 
@@ -21,8 +21,8 @@ You can use Git without GitHub, but you can't use GitHub effectively without Git
 
 When installing Git, particularly if you're not familiar with it, just accept all defaults except:
 
-- Add entry to Windows Terminal
-- Default text editor: choose nano or VS Code
+- Check: "Add a Git Bash Profile for Windows Terminal"
+- Default text editor: choose Notepad or VS Code
 
 Many settings can be changed later and the default values for the install avoid introducing complexity that could make it harder to wrap your mind around how git works. You can download the installer from the official [Git](https://git-scm.com/downloads) download site. Or from within a PowerShell terminal run:
 

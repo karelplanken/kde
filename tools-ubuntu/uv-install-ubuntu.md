@@ -27,11 +27,24 @@ uv
 You should see output similar to: An extremely fast Python package manager.
 
 Since `~/.local/bin` is already manually added to `$PATH`, which is where uv installs itself, we don't want uv 
-to also add `~/.local/bin` and create a duplicate entry. Therefore add following lines to `.bashrc` by running:
+to also add `~/.local/bin` and create a duplicate entry. Add the following export to `.profile` immediately before `# if running bash`:
 
 ```bash
-echo "\n# Prevent uv from modifying shell profiles during updates" >> ~/.bashrc
-echo "export UV_NO_MODIFY_PATH=1" >> ~/.bashrc
+PROFILE="$HOME/.profile"
+ANCHOR='^# if running bash$'
+MARKER='UV_NO_MODIFY_PATH'
+
+if ! grep -q "$MARKER" "$PROFILE"; then
+    if grep -q "$ANCHOR" "$PROFILE"; then
+        sed -i "/$ANCHOR/i\\
+# Prevent uv from modifying shell profiles during updates\\
+export UV_NO_MODIFY_PATH=1\\
+" "$PROFILE"
+    else
+        echo "WARNING: anchor line not found in $PROFILE - appending to end instead, check ordering manually" >&2
+        printf '\n# Prevent uv from modifying shell profiles during updates\nexport UV_NO_MODIFY_PATH=1\n' >> "$PROFILE"
+    fi
+fi
 ```
 
 
@@ -40,15 +53,19 @@ echo "export UV_NO_MODIFY_PATH=1" >> ~/.bashrc
 1. To enable shell autocompletion for uv commands, run the following:
 
     ```bash
-    echo -e "\n# Shell completion for uv" >> ~/.bashrc
-    echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
+    if ! grep -q 'uv generate-shell-completion bash' ~/.bashrc; then
+        echo -e "\n# Shell completion for uv" >> ~/.bashrc
+        echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
+    fi
     ```
 
 2. To enable shell autocompletion for uvx commands, execute:
 
     ```bash
-    echo -e "\n# Shell completion for uvx" >> ~/.bashrc
-    echo 'eval "$(uvx --generate-shell-completion bash)"' >> ~/.bashrc
+    if ! grep -q 'uvx --generate-shell-completion bash' ~/.bashrc; then
+        echo -e "\n# Shell completion for uvx" >> ~/.bashrc
+        echo 'eval "$(uvx --generate-shell-completion bash)"' >> ~/.bashrc
+    fi
     ```
 
     Note: uvx is a companion tool to uv that allows you to run Python scripts in ephemeral, isolated environments without needing to manually create virtual environments.

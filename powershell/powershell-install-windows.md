@@ -24,13 +24,13 @@ Since Windows comes with Windows PowerShell, you can install [PowerShell](https:
     winget install -e --id Microsoft.PowerShell --source winget
     ```
 
-3. After restarting Windows Terminal, verify the install with:
+3. Verify the install with:
 
     ```powershell
     pwsh --version
     ```
 
-    or even better, just start PowerShell and run the same command in there.
+    If you don't get theexpected output, i.e. `PowerShell 7.6.3` or similar, restart Windows PowerShell or even better, just start PowerShell and run the same command in there.
 
 If the installation was successful, you can launch PowerShell from the Start menu. Once Windows Terminal is installed, which is probably already the case since Windows 11 comes with Windows Terminal, I plan to set PowerShell as the default profile. I'll come back to that later.
 
@@ -48,15 +48,11 @@ To set it:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 	
-Do the above for both PowerShell and Windows PowerShell because Windows PowerShell is still the default shell in some contexts. In my case, a freshly installed Windows 11 Enterprise edition had the execution policy set to RemoteSigned for LocalMachine. Since I want to follow the Principle of Least Privilege, I reset this to Undefined:
-
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope LocalMachine
-```
+Do the above for both PowerShell and Windows PowerShell because Windows PowerShell is still the default shell in some contexts.
 
 Note: The RemoteSigned execution policy allows locally created scripts to run freely, while requiring scripts downloaded from the internet to be signed by a trusted publisher. This strikes a balance between security and convenience, making it ideal for development environments like this one.
 
-Setting the execution policy only for the current user aligns with the Principle of Least Privilege and the Security with Usability principle. It ensures that:
+Setting the execution policy for the current user aligns with the Principle of Least Privilege and the Security with Usability principle. It ensures that:
 
 - You don't affect other users or system-wide settings.
 - You maintain a secure and personalized configuration.

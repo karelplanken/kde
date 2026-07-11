@@ -42,54 +42,44 @@ Note: Except for AArch64/ARM64, Oh My Posh can be installed using Homebrew. Howe
 
     If you get True then all is well and you can proceed. If you get False then Oh My Posh, i.e. the executable oh-my-posh, ended up somewhere else. In the latter case you may want to search for its location and use that path in the next steps.
 
-3. Open `.profile`:
-
-    ```bash
-    sudo nano ~/.profile
-    ```
-
-    then comment out the following lines:
-    
-    ```bash
-    # set PATH so it includes user's private bin if it exists
-    if [ -d "$HOME/.local/bin" ] ; then
-        PATH="$HOME/.local/bin:$PATH"
-    fi
-    ```
-
-    to match:
-    ```bash
-    # set PATH so it includes user's private bin if it exists
-    #if [ -d "$HOME/.local/bin" ] ; then
-    #    PATH="$HOME/.local/bin:$PATH"
-    #fi
-    ```
-    
-    close the `.profile` file (`Ctrl`+`O`, `Enter`, and then `Ctrl`+`X`)
-
-4. For user installed applications that live in `$HOME/.local/bin` to be available, `$HOME/.local/bin` should be in the `$PATH` environment variable. Therefore add a line in which `$HOME/.local/bin` is added to `$PATH` via an export, run: 
+3. For user installed applications that live in `$HOME/.local/bin` to be available, `$HOME/.local/bin` should be in the `$PATH` environment variable. Add this guarded block to `.profile` immediately before `# if running bash`:
 
 	```bash
-    echo -e "\n# Set $PATH so it includes user's private bin if it exists" >> ~/.bashrc && \
-        echo 'if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then' >> ~/.bashrc && \
-        echo '  export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && \
-        echo "fi" >> ~/.bashrc
+    PROFILE="$HOME/.profile"
+    ANCHOR='^# if running bash$'
+    MARKER='HOME/.local/bin'
+
+    if ! grep -q "$MARKER" "$PROFILE"; then
+        if grep -q "$ANCHOR" "$PROFILE"; then
+            sed -i "/$ANCHOR/i\\
+    # Set PATH so it includes user's private bin if it exists\\
+    if [ -d \"$HOME/.local/bin\" ] && [[ \":$PATH:\" != *\":$HOME/.local/bin:\"* ]]; then\\
+      export PATH=\"$HOME/.local/bin:$PATH\"\\
+    fi\\
+    " "$PROFILE"
+        else
+            echo "WARNING: anchor line not found in $PROFILE - appending to end instead, check ordering manually" >&2
+            printf '\n# Set PATH so it includes user\'s private bin if it exists\nif [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then\n  export PATH="$HOME/.local/bin:$PATH"\nfi\n' >> "$PROFILE"
+        fi
+    fi
 	```
 
-5. Initialize Oh My Posh with a Theme. To use Oh My Posh with a theme of your choice (e.g., `atomic`), add the following initialization command to your `.bashrc` file for interactive, non-login shells:
+4. Initialize Oh My Posh with a theme. To use Oh My Posh with a theme of your choice (e.g., `atomic`), add the following idempotent initialization command to your `.bashrc` file:
     
     ```bash
-    echo -e "\n# Use Oh My Posh with atomic theme" >> ~/.bashrc && \
-    echo 'eval "$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/atomic.omp.json)"' >> ~/.bashrc
+    if ! grep -q 'oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/atomic.omp.json' ~/.bashrc; then
+        echo -e "\n# Use Oh My Posh with atomic theme" >> ~/.bashrc
+        echo 'eval "$(oh-my-posh init bash --config ~/.cache/oh-my-posh/themes/atomic.omp.json)"' >> ~/.bashrc
+    fi
     ```
     
-6. Reload the shell for the changes to take effect:
+5. Reload the shell for the changes to take effect:
     
     ```bash
     source ~/.bashrc
     ```
 
-7. Check the install using:
+6. Check the install using:
 
     ```bash
     oh-my-posh --version

@@ -10,7 +10,7 @@ I use Windows Terminal in my dev setup on Windows with WSL Ubuntu because it all
 
 Windows Terminal is a terminal application for use with command-line tools and shells like Command Prompt, PowerShell, and WSL, i.e., Bash. It allows you to work with multiple tabs and supports Unicode and UTF-8 characters. Moreover, it can be customized via themes; styles can be set and configured.
 
-## Install Windows Terminal
+## Check that Windows Terminal is Installed
 
 Just like with WingGet, you should already have Windows Terminal since that comes with Windows 11. Check if you have Windows Terminal by running:
 
@@ -25,23 +25,5 @@ winget install -e --id Microsoft.WindowsTerminal
 ```
 
 Verify the installation by running Windows Terminal. 
-
-## Configure Windows Terminal
-
-Launch Windows Terminal (`WT`) and set it as default terminal:
-
-`WT`→`Settings`→`Startup`→`Default terminal application`→`Windows Terminal`
-
-Set the installed (Hack) Nerd font as default:
-
-`WT`→`Settings`→`Profiles`→`Defaults`→`Appearance`
-
-Set the `Color scheme`, `Font face`, and `Font size` here. I also set a background image here.
-
-Set the cross-platform PowerShell as the default profile:
-
-`WT`→`Settings`→`Startup`→`Default profile`→`PowerShell`
-
-Additionally, I love the GitHub Dark color scheme, therefore I've put the definition of it in a separate JSON file, <a href="color-scheme-windows-terminal.json">color-scheme-windows-terminal.json</a>, in this repo. You can copy it from there and paste it in your Windows Terminal JSON file at the appropriate location inside the schemes array (somewhere around line 100). You can open the Windows Terminal JSON file from within settings in the lower left corner.
 
 <a href="../README.md">Back to README</a>
