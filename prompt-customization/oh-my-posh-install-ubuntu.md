@@ -42,27 +42,55 @@ Note: Except for AArch64/ARM64, Oh My Posh can be installed using Homebrew. Howe
 
     If you get True then all is well and you can proceed. If you get False then Oh My Posh, i.e. the executable oh-my-posh, ended up somewhere else. In the latter case you may want to search for its location and use that path in the next steps.
 
-3. For user installed applications that live in `$HOME/.local/bin` to be available, `$HOME/.local/bin` should be in the `$PATH` environment variable. Add this guarded block to `.profile` immediately before `# if running bash`:
+3. For user installed applications that live in `$HOME/.local/bin` to be available, `$HOME/.local/bin` should be in the `$PATH` environment variable. Ubuntu's default `.profile` already ships with blocks that add `$HOME/bin` and `$HOME/.local/bin` to `PATH`, but they sit *after* the `# if running bash` block that sources `.bashrc` - so when `.bashrc` runs `oh-my-posh init`, `.local/bin` isn't on the `PATH` yet. Open `.profile` in an editor:
 
-	```bash
-    PROFILE="$HOME/.profile"
-    ANCHOR='^# if running bash$'
-    MARKER='HOME/.local/bin'
+    ```bash
+    nano "$HOME/.profile"
+    ```
 
-    if ! grep -q "$MARKER" "$PROFILE"; then
-        if grep -q "$ANCHOR" "$PROFILE"; then
-            sed -i "/$ANCHOR/i\\
-    # Set PATH so it includes user's private bin if it exists\\
-    if [ -d \"$HOME/.local/bin\" ] && [[ \":$PATH:\" != *\":$HOME/.local/bin:\"* ]]; then\\
-      export PATH=\"$HOME/.local/bin:$PATH\"\\
-    fi\\
-    " "$PROFILE"
-        else
-            echo "WARNING: anchor line not found in $PROFILE - appending to end instead, check ordering manually" >&2
-            printf '\n# Set PATH so it includes user\'s private bin if it exists\nif [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then\n  export PATH="$HOME/.local/bin:$PATH"\nfi\n' >> "$PROFILE"
+    and move the two `PATH` blocks so they come *before* the `# if running bash` block, using nano's cut/paste:
+
+    - Place the cursor on the blank line right above the first `# set PATH...` comment (the one for `$HOME/bin`).
+    - Press <kbd>Ctrl</kbd>+<kbd>^</kbd> (Ctrl+6, shown as `^^ Mark` in nano) to start selecting, or <kbd>Alt</kbd>+<kbd>A</kbd> if `Ctrl+^` doesn't work in your terminal.
+    - Use the down arrow to extend the selection down to the blank line right after the second `fi` (i.e. select both `PATH` blocks together, including the blank line between them).
+    - Press <kbd>Ctrl</kbd>+<kbd>K</kbd> to cut the selected text.
+    - Move the cursor up to the blank line just above `# if running bash`.
+    - Press <kbd>Ctrl</kbd>+<kbd>U</kbd> to paste the cut text there.
+    - Press <kbd>Ctrl</kbd>+<kbd>O</kbd> then <kbd>Enter</kbd> to save, and <kbd>Ctrl</kbd>+<kbd>X</kbd> to exit nano.
+
+    The result should look like this:
+
+    ```bash
+    # ~/.profile: executed by the command interpreter for login shells.
+    # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+    # exists.
+    # see /usr/share/doc/bash/examples/startup-files for examples.
+    # the files are located in the bash-doc package.
+
+    # the default umask is set in /etc/profile; for setting the umask
+    # for ssh logins, install and configure the libpam-umask package.
+    #umask 022
+
+    # set PATH so it includes user's private bin if it exists
+    if [ -d "$HOME/bin" ] ; then
+        PATH="$HOME/bin:$PATH"
+    fi
+
+    # set PATH so it includes user's private bin if it exists
+    if [ -d "$HOME/.local/bin" ] ; then
+        PATH="$HOME/.local/bin:$PATH"
+    fi
+
+    # if running bash
+    if [ -n "$BASH_VERSION" ]; then
+        # include .bashrc if it exists
+        if [ -f "$HOME/.bashrc" ]; then
+            . "$HOME/.bashrc"
         fi
     fi
-	```
+    ```
+
+    If your `.profile` has no `$HOME/.local/bin` block at all, add one manually in the same position, right before `# if running bash`.
 
 4. Initialize Oh My Posh with a theme. To use Oh My Posh with a theme of your choice (e.g., `atomic`), add the following idempotent initialization command to your `.bashrc` file:
     
