@@ -26,25 +26,12 @@ uv
 
 You should see output similar to: An extremely fast Python package manager.
 
-Since `~/.local/bin` is already manually added to `$PATH`, which is where uv installs itself, we don't want uv 
-to also add `~/.local/bin` and create a duplicate entry. Add the following export to `.profile` immediately before `# if running bash`:
+Since `~/.local/bin` is already manually added to `$PATH`, which is where uv installs itself, we don't want uv
+to also add `~/.local/bin` and create a duplicate entry. Follow [Recipe 1: Inserting a new export](../additional-info/profile-vs-bashrc-wsl2.md#recipe-1-inserting-a-new-export) in the `.profile` vs `.bashrc` guide, using `UV_NO_MODIFY_PATH` as the marker and these two lines as the export to add:
 
 ```bash
-PROFILE="$HOME/.profile"
-ANCHOR='^# if running bash$'
-MARKER='UV_NO_MODIFY_PATH'
-
-if ! grep -q "$MARKER" "$PROFILE"; then
-    if grep -q "$ANCHOR" "$PROFILE"; then
-        sed -i "/$ANCHOR/i\\
-# Prevent uv from modifying shell profiles during updates\\
-export UV_NO_MODIFY_PATH=1\\
-" "$PROFILE"
-    else
-        echo "WARNING: anchor line not found in $PROFILE - appending to end instead, check ordering manually" >&2
-        printf '\n# Prevent uv from modifying shell profiles during updates\nexport UV_NO_MODIFY_PATH=1\n' >> "$PROFILE"
-    fi
-fi
+# Prevent uv from modifying shell profiles during updates
+export UV_NO_MODIFY_PATH=1
 ```
 
 
