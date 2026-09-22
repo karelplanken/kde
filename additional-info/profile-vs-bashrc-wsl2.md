@@ -72,42 +72,52 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 ```
 
-To edit `.profile` manually with Nano:
+## Editing `.profile` safely with nano
 
-Open `.profile`:
+Any future install step that needs to touch `.profile` (adding an export, or fixing block order) should follow one of the two recipes below. Do not use blind `>>` append for `.profile` exports in this repo, and avoid scripting the change with `sed`/anchor-matching - multi-line `sed -i ... i\` commands with escaped quotes are easy to break when copied and pasted into a terminal, so a short manual edit in `nano` is more reliable. Other docs in this repo link back to this section instead of repeating these steps.
 
-```bash
-sudo nano ~/.profile
-```
-
-Then edit the content following the instruction line shown at the bottom of the screen. After editing, close the file with `Ctrl`+`O`, `Enter`, and then `Ctrl`+`X`.
-
-## Adding new exports safely
-
-For any future install step that needs to add PATH/env exports to `.profile`, use this anchor-based, idempotent insertion pattern. Do not use blind `>>` append for `.profile` exports in this repo.
+Open `.profile` the same way for either recipe:
 
 ```bash
-PROFILE="$HOME/.profile"
-ANCHOR='^# if running bash$'
-MARKER='<unique string from this block, e.g. env var name>'
-
-if ! grep -q "$MARKER" "$PROFILE"; then
-    if grep -q "$ANCHOR" "$PROFILE"; then
-        sed -i "/$ANCHOR/i\\
-# <comment>\\
-export VAR=value\\
-" "$PROFILE"
-    else
-        echo "WARNING: anchor line not found in $PROFILE - appending to end instead, check ordering manually" >&2
-        printf '\n# <comment>\nexport VAR=value\n' >> "$PROFILE"
-    fi
-fi
+nano "$HOME/.profile"
 ```
 
-Why this is required:
+After editing, save with <kbd>Ctrl</kbd>+<kbd>O</kbd>, <kbd>Enter</kbd>, and exit with <kbd>Ctrl</kbd>+<kbd>X</kbd>.
+
+### Recipe 1: Inserting a new export
+
+Use this when a tool needs a new PATH/env export added (e.g. `UV_NO_MODIFY_PATH`).
+
+First check whether it's already present, to avoid adding it twice:
+
+```bash
+grep -q '<unique string from this block, e.g. env var name>' "$HOME/.profile" && echo "Already set" || echo "Not set"
+```
+
+If you get "Not set", open `.profile`, move the cursor to the blank line right above `# if running bash`, and add the new lines, e.g.:
+
+```bash
+# <comment>
+export VAR=value
+```
+
+### Recipe 2: Reordering existing blocks
+
+Use this when PATH blocks already exist in `.profile` (e.g. the default `$HOME/bin` and `$HOME/.local/bin` blocks) but sit *after* `# if running bash`, which breaks the ordering requirement above.
+
+- Place the cursor on the blank line right above the first block to move.
+- Press <kbd>Ctrl</kbd>+<kbd>^</kbd> (Ctrl+6, shown as `^^ Mark` in nano) to start selecting, or <kbd>Alt</kbd>+<kbd>A</kbd> if `Ctrl+^` doesn't work in your terminal.
+- Use the down arrow to extend the selection down to the blank line right after the last block to move.
+- Press <kbd>Ctrl</kbd>+<kbd>K</kbd> to cut the selected text.
+- Move the cursor up to the blank line just above `# if running bash`.
+- Press <kbd>Ctrl</kbd>+<kbd>U</kbd> to paste the cut text there.
+
+The result should match the [Canonical structure](#canonical-structure) shown above. If a block referenced by another doc's instructions doesn't exist at all in your `.profile`, add it manually in the same position instead of moving it.
+
+Why this matters:
 
 - Blind append can break required ordering by placing exports after the `.bashrc` source block.
-- The anchor existence check prevents a silent no-op if the anchor line is missing or changed.
+- Checking for the marker first prevents adding the same export twice on a re-run of these instructions.
 
 ## How to verify
 
